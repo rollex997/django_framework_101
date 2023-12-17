@@ -11,13 +11,22 @@ class Item:
         assert price >=0, f"Price {price} is not greater than zero!"
         assert quantity >=0, f"Quantity {quantity} is not greater than zero!"
         #Assign to self object
-        self.name_ = name
+        self.__name = name
         self.price_ = price
         self.quantity_ = quantity
 
         #append the instance as soon as it's created
         #self is acutally instance itself every time that is being created.
         Item.all_instanes_Item_class.append(self)
+
+    @property
+    def name(self):
+        return self.__name
+    
+    @name.setter
+    def name(self, value):
+        self.__name = value
+
     def calculate_total_price(self):
         return self.price_*self.quantity_
     def apply_discount(self):
