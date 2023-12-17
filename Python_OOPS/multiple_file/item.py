@@ -27,6 +27,8 @@ class Item:
     @name.setter
     def name(self, value):
         print("set and attribute")
+        if len(value) > 10:
+            raise Exception("The name exceeds the max length of 10 characters")
         self.__name = value
 
     def calculate_total_price(self):
