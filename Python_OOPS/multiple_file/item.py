@@ -21,10 +21,12 @@ class Item:
 
     @property
     def name(self):
+        print("get an attribute")
         return self.__name
     
     @name.setter
     def name(self, value):
+        print("set and attribute")
         self.__name = value
 
     def calculate_total_price(self):

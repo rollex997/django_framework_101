@@ -24,5 +24,6 @@ from phone import phone
 # print(phone.all_phone_instances)
 
 item1 = Item("MyItem", 750)
+print(item1.name)
 item1.name = "OtherItem"
 print(item1.name)
