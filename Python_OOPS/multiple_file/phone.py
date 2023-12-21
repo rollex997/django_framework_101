@@ -11,4 +11,4 @@ class phone(Item):
         self.broken_phones_ = broken_phones
         phone.all_phone_instances.append(self)
     def __repr__(self):
-        return f"{self.__class__.__name__}('{self.name_}', '{self.price_}', '{self.quantity_}')"
+        return f"{self.__class__.__name__}('{self.name}', '{self.price}', '{self.quantity_}')"

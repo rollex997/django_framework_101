@@ -12,7 +12,7 @@ class Item:
         assert quantity >=0, f"Quantity {quantity} is not greater than zero!"
         #Assign to self object
         self.__name = name
-        self.price_ = price
+        self.__price = price
         self.quantity_ = quantity
 
         #append the instance as soon as it's created
@@ -23,6 +23,9 @@ class Item:
     def name(self):
         print("get an attribute")
         return self.__name
+    @property
+    def price(self):
+        return self.__price
     
     @name.setter
     def name(self, value):
@@ -31,10 +34,19 @@ class Item:
             raise Exception("The name exceeds the max length of 10 characters")
         self.__name = value
 
+    @price.setter
+    def value(self, value):
+        if value < 0:
+            raise Exception("Price cannot be negative")
+        self.__price = value
+
     def calculate_total_price(self):
-        return self.price_*self.quantity_
+        return self.__price*self.quantity_
     def apply_discount(self):
-        self.price_ = self.price_ * self.pay_rate
+        self.__price = self.__price * self.pay_rate
+    #increment_value comes from outside not from the class constructor
+    def apply_increment(self, increment_value):
+        self.__price = self.__price + self.__price * increment_value
 
     @classmethod
     def instanciate_from_csv(cls):
@@ -53,7 +65,7 @@ class Item:
         for item in items:
             Item(
                 name=item.get('name'),
-                price=float(item.get('price')),
+                __price=float(item.get('price')),
                 quantity=int(item.get('quantity'))
             )
     @staticmethod
@@ -66,4 +78,4 @@ class Item:
         else:
             return False        
     def __repr__(self):
-        return f"{self.__class__.__name__}('{self.name_}', '{self.price_}', '{self.quantity_}')"
+        return f"{self.__class__.__name__}('{self.__name}', '{self.__price}', '{self.quantity_}')"
