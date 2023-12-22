@@ -79,3 +79,16 @@ class Item:
             return False        
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.__name}', '{self.__price}', '{self.quantity_}')"
+    
+    #abstraction
+    #making methods private using double underscore
+    def __connect(self,smtp_server):
+        pass
+    def __prepare_body(self):
+        return f"{self.__class__.__name__}('{self.__name}', '{self.__price}', '{self.quantity_}')"
+    def __send(self):
+        pass
+    def send_email(self):
+        self.__connect("")
+        self.__prepare_body()
+        self.__send()

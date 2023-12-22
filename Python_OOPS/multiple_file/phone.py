@@ -1,6 +1,8 @@
 from item import Item
 #inherit from Item class
 class phone(Item):
+    #polymorphism overriding pay_rate
+    pay_rate = 0.5
     all_phone_instances = []
     def __init__(self, name : str, price: float, quantity=0, broken_phones = 0):
         #call the super function to have all the attributes/methods of the parent class
@@ -12,3 +14,4 @@ class phone(Item):
         phone.all_phone_instances.append(self)
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.name}', '{self.price}', '{self.quantity_}')"
+    
