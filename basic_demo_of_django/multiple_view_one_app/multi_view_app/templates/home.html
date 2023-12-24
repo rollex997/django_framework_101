@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>
+            home
+        </title>
+    </head>
+    <body>
+        <h1>
+            this is the home page
+        </h1>
+        <form method="post" action="{% url 'course' %}">
+            {% csrf_token %}
+            <button>open course</button>
+        </form>
+        <form method="post" action="{% url 'fees' %}">
+            {% csrf_token %}
+            <button>open fees</button>
+        </form>
+        <form method="post" action="{% url 'result' %}">
+            {% csrf_token %}
+            <button>open result</button>
+        </form>
+    </body>
+</html>
