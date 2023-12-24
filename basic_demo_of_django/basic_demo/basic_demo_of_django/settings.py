@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sslserver',
     'course',
+    'fees',
+    'result',
 ]
 
 MIDDLEWARE = [

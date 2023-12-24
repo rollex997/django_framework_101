@@ -1,4 +1,14 @@
-<html>
-    <h1>Hello, world!</h1>
+ <html>
+    <h1>This is a course page</h1>
     <p>This is aditya Kumar</p>
-</html>
+     
+     <form method="post" action="{% url 'fees' %}">
+        {% csrf_token %}
+        <button>open fees page</button> 
+     </form>
+     <form method = "post" action="{% url 'result' %}">
+      {% csrf_token %}
+      <button>open result page</button>
+     </form>
+    
+</html> 

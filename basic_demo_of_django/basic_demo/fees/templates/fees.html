@@ -1,0 +1,9 @@
+<html>
+    <h1>
+        This is a fees page
+    </h1>
+    <form method="post" action="{% url 'home' %}">
+        {% csrf_token %}
+        <button>go back</button> 
+     </form>
+</html>
