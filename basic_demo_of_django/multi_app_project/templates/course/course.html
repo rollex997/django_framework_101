@@ -1,6 +1,8 @@
+ {% load static %}
 <html>
     <head>
         <title>course</title>
+        <link rel="stylesheet" href="{% static 'css/course.css' %}"/>
     </head>
     <body>
         <h1>this is course page</h1>
@@ -13,4 +15,5 @@
             <button>open result page</button>
         </form>
     </body>
+    <script src={% static "js/course.js" %}></script>
 </html>
