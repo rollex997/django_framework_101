@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>course</title>
+    </head>
+    <body>
+        <h1>this is course page</h1>
+        <form method="post" action="{% url 'fees' %}">
+            {% csrf_token %}
+            <button>open fees page</button>
+        </form>
+        <form method="post" action="{% url 'result' %}">
+            {% csrf_token %}
+            <button>open result page</button>
+        </form>
+    </body>
+</html>

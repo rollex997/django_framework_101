@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>result</title>
+    </head>
+    <body>
+        <h1>this is a result page</h1>
+        <form method="post" action="{% url 'course' %}">
+            {% csrf_token %}
+            <button>Go back</button>
+        </form>
+    </body>
+</html>
