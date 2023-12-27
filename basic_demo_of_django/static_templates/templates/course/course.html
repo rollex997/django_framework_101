@@ -1,0 +1,18 @@
+{% load static %}
+<html>
+    <head>
+        <title>Course</title>
+        <link rel="stylesheet" href="{% static 'css/course/course.css' %}"/>
+    </head>
+    <body>
+        <h1 class="heading">This is a course page</h1>
+        <form method="post" action="{% url "fees" %}">
+            {% csrf_token %}
+            <button>Open fees page</button>
+        </form>
+        <form method ="post" action="{% url "result" %}">
+            {% csrf_token %}
+            <button>Open result page</button>
+        </form> 
+    </body>
+</html>
