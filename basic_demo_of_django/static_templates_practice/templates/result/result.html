@@ -1,0 +1,14 @@
+{% load static %}
+<html>
+    <head>
+        <title>result</title>
+        <link rel ="stylesheet" href="{% static "/css/result/result.css" %}"/>
+    </head>
+    <body>
+        <h1>This is a result page</h1>
+        <form method="post" action="{% url 'course' %}">
+            {% csrf_token %}
+            <button>Go back</button>
+        </form>
+    </body>
+</html>
