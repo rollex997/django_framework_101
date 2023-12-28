@@ -1,11 +1,13 @@
 {% load static %}
 <html>
     <head>
-        <title>course</title>
+        <title>{{page_name}}</title>
         <link rel="stylesheet" href={% static '/css/course/course.css' %}/>
     </head>
     <body>
-        <h1>This is a course page</h1>
+        <h1>How to pass data from views to html using context and python dictionary</h1>
+        <h1>create a dynamic page </h1>
+        <h1>This is a {{page_name}}</h1>
         <form method="post" action="{% url 'fees'  %}">
             {% csrf_token %}
             <button>Open fees page</button>

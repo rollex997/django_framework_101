@@ -2,12 +2,12 @@
 <html>
     <head>
         <title>
-            fees
+            {{name}}
         </title>
         <link rel="stylesheet" href="{% static "/css/fees/fees.css" %}">
     </head>
     <body>
-        <h1>This is a fees page</h1>
+        <h1>This is a {{name}} page</h1>
         <form method="post" action="{% url "course" %}">
             {% csrf_token %}
             <button>Go back</button>
