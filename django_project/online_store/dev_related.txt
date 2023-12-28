@@ -1,0 +1,9 @@
+            Nav bar options
+            company name = Jaiswal Traders
+            Home => Home page link 
+            About us => about Grocery shop
+            Admin => Register/Login/Logout Admin ==> dropdown 3 options 
+            Contact US 
+            My Cart 
+            
+            
