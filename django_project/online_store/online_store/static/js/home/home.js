@@ -25,7 +25,6 @@ var underline_My_cart = $("#My_cart .underline_nav");
 $(document).on('DOMContentLoaded', function(){
     nav_bar_on_mouse_hover_style();
     nav_bar_defaults_on_page_load();
-    nav_bar_items_on_click();
 });
 
 //this function will load the nav bar items default style
@@ -149,13 +148,4 @@ function nav_bar_on_mouse_hover_style(){
     
 }
 
-//This function will apply style on nav bar items menu when mouse clicks it
-function nav_bar_items_on_click(){
-    console.log("nav_bar_items_on_click function loaded")
-    home.click(function() {
-        console.log("home is clicked");
-        // set css of underline to green CHANGE THE THEME LATER
-    });
-
-}
 //handling nav bar ends

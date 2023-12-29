@@ -5,5 +5,8 @@
             Admin => Register/Login/Logout Admin ==> dropdown 3 options 
             Contact US 
             My Cart 
+
+            TODO 
+            add a corousel to display images
             
             
