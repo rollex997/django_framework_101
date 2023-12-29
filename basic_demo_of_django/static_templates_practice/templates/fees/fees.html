@@ -8,7 +8,8 @@
     </head>
     <body>
         <h1>This is a {{name}} page</h1>
-        <p>Data coming from the backend (Views) :- name = {{name_}} , fees = {{fees_}} , city = {{city_}} </p>
+        <p>Data coming from the backend (Views) :- name = {{name_}} , fees = {{fees_}} , city = {{city_}} , addr = {{addr}}</p>
+        <p>Data coming from the backend (Views) :- name = {{name_|upper}} , fees = {{fees_|length}} , city = {{city_|lower}}, addr = {{addr|capfirst}} </p>
         <form method="post" action="{% url "course" %}">
             {% csrf_token %}
             <button>Go back</button>

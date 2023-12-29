@@ -5,5 +5,6 @@ def fees(request):
     fees = 504658
     name = 'aditya Kumar'
     city = 'Lucknow'
-    dictionary = {'name_' : name,'fees_':fees, 'city_' : city}
+    addr = 'asdfgh qwert'
+    dictionary = {'name_' : name,'fees_':fees, 'city_' : city, 'addr' : addr}
     return render(request,"fees/fees.html",context = dictionary)
