@@ -8,6 +8,15 @@
         <h1>This is a result page</h1>
         <p>Data coming from the backend (Views) :- date = {{dt}}</p>
         <p>date filter = {{dt|date:'Y-m-d'}}</p>
+        <p>data foating point floatformat filter without argument : p1 = {{p1|floatformat}} , p2 = {{p2|floatformat}} , p3 = {{p3|floatformat}} , p4 = {{p4|floatformat}}</p>
+        <p>data foating point floatformat filter witn integer as an argument : p1 = {{p1|floatformat:3}} , p2 = {{p2|floatformat:3}} , p3 = {{p3|floatformat:3}} , p4 = {{p4|floatformat:3}}</p>
+        <p>data foating point floatformat filter witn zero as an argument : p1 = {{p1|floatformat:0}} , p2 = {{p2|floatformat:0}} , p3 = {{p3|floatformat:0}} , p4 = {{p4|floatformat:0}}</p>
+        <p>data foating point floatformat filter witn negative number as an argument : p1 = {{p1|floatformat:-3}} , p2 = {{p2|floatformat:-3}} , p3 = {{p3|floatformat:-3}} , p4 = {{p4|floatformat:-3}}</p>
+        {% if p5 %}
+        <p>p5 = {{p5}}</p>
+        {% else %}
+        <p>p5 not available</p>
+        {% endif %}
         <form method="post" action="{% url 'course' %}">
             {% csrf_token %}
             <button>Go back</button>
