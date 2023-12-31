@@ -7,7 +7,28 @@
     <body>
         <h1>How to pass data from views to html using context and python dictionary</h1>
         <h1>create a dynamic page </h1>
-        <h1>This is a {{page_name}}</h1>
+        <ul>
+            {% for name in names%}
+            <li><p>names of student = {{name}}</p></li>
+            {% empty %}
+            <li><p>List is empty</p></li>
+            {% endfor %}
+        </ul>
+        <p>{{data}}</p>
+        <p>{{data.stu1.roll_no}}</p>
+
+        <table>
+            <tr>
+              <th>Name</th>
+              <th>Roll Number</th>
+            </tr>
+            {% for key, value in data.items %}
+            <tr>
+                <td>{{value.name}}</td>
+                <td>{{value.roll_no}}</td>
+              </tr>
+            {% endfor %}
+          </table>
         <form method="post" action="{% url 'fees'  %}">
             {% csrf_token %}
             <button>Open fees page</button>
