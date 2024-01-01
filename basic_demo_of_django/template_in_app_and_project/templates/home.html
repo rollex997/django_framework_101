@@ -1,0 +1,13 @@
+{% load static %}
+<html>
+    <head>
+        <title>Home</title>
+        <link href="{% static "css/home.css" %}" rel= "stylesheet"/>
+    </head>
+    <h1>This is a home paage in the django project directory</h1>
+    
+    <form method="post" action="{% url 'course' %}">
+        {% csrf_token %}
+        <button>Open course page</button>
+    </form>
+</html>

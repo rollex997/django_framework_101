@@ -1,0 +1,12 @@
+{% load static %}
+<html>
+    <head>
+        <title>Course</title>
+        <link href = "{% static "/css/course/course.css" %}" rel="stylesheet"/>
+    </head>
+    <h1>This is a course page in the application folder</h1>
+    <form method='post' action={% url 'home' %}>
+        {% csrf_token %}
+        <button>go back</button>
+    </form>
+</html>

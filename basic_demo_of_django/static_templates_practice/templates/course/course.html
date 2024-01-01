@@ -27,7 +27,7 @@
                 <td>{{value.name}}</td>
                 <td>{{value.roll_no}}</td>
               </tr>
-            {% endfor %}
+            {% endfor %}  
           </table>
         <form method="post" action="{% url 'fees'  %}">
             {% csrf_token %}
