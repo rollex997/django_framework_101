@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<link href="css/course/course.css" rel="stylesheet"/>
+<h1>This is a course page</h1>
+<p>this page is in the course application template folder</p>
+<form method="post" action="{% url "fees" %}">
+    {% csrf_token %}
+    <button>open fees page</button>
+</form>
+<form method="post" action="result">
+    {% csrf_token %}
+    <button>open result page</button>
+</form>
+{% endblock content %}

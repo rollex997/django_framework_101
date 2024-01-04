@@ -1,0 +1,13 @@
+{% load static %}
+<html>
+    <head>
+        <title>Home page</title>
+        <link href="{% static "css/home/home.css" %}" rel="stylesheet"/>
+    </head>
+    <body>
+        <h1>This is a home page</h1>
+        <p>The page shown below is a child page</p>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

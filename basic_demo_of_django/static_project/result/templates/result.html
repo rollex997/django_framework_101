@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<h1>this is a result page</h1>
+<p>this page is in result app template folder</p>
+<form method="post" action="{% url 'course' %}">
+    {% csrf_token %}
+    <button>go back</button>
+</form>
+{% endblock content %}
