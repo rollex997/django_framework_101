@@ -12,4 +12,9 @@
     {% csrf_token %}
     <button>open result page</button>
 </form>
+<p>values from the backend : </p>
+{% for key, values in Course.items %}
+    <p>{{ values }}</p>
+{% endfor %}
+
 {% endblock content %}

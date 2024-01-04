@@ -1,4 +1,5 @@
 {% extends 'index.html' %}
+{% load static %}
 {% block content %}
 <h1>this is a fees page</h1>
 <p>this page is in the fees application template folder</p>
@@ -6,4 +7,6 @@
     {% csrf_token %}
     <button>go back</button>
 </form>
+<img src="{% static 'images/1.jpg' %}"></img>
+<script src={% static 'js/all.js' %}></script>
 {% endblock content %}
