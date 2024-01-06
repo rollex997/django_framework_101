@@ -1,0 +1,26 @@
+{% load static %}
+<html>
+    <head>
+        <title>Home</title>
+        <link href="{% static "css/core/home.css" %}" rel="stylesheet"/>
+    </head>
+    <body>
+        <h1>This is a home page</h1>
+        <p>This is a home page also a parent page</p>
+        {% block content %}
+        <form method="post" action="{% url "course" %}">
+            {% csrf_token %}
+            <button>open course page</button>
+        </form>
+        <form method="post" action="{% url "fees" %}">
+            {% csrf_token %}
+            <button>open fees page</button>
+        </form>
+        <form method="post" action="{% url "result" %}">
+            {% csrf_token %}
+            <button>open result page</button>
+        </form>
+        {% endblock content %}
+    </body>
+    <script src="{% static "js/core/home.js" %}"></script>
+</html>

@@ -1,0 +1,16 @@
+{% extends "core/home.html" %}
+{% load static %}
+{% block content %}
+<link href="{% static "css/fees/fees.css" %}" rel="stylesheet"/>
+<h1>{{title}}</h1>
+<p>{{message}}</p>
+<p>data coming from backend</p>
+{% for key,values in data.items %}
+<p>{{key}} : {{values}}</p>
+{% endfor %}
+<form method="post" action="{% url "home" %}">
+    {% csrf_token %}
+    <button>go back</button>
+</form>
+<script src="{% static "js/fees/fees.js" %}"></script>
+{% endblock content %}
