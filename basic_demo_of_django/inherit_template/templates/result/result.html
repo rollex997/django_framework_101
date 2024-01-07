@@ -5,7 +5,7 @@ result
 {% endblock title %}
 {% block content %}
 <link rel="stylesheet" href="{% static "css/result/result.css" %}"/>
-<h1>{{title}}</h1>
+<h1>{{title}} <i class="fa-solid fa-percent"></i></h1>
 <p>{{messege}}</p>
 <p>data from the backend</p>
 {% for key,values in data.items %}

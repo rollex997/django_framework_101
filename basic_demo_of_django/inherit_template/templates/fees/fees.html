@@ -5,7 +5,7 @@ fees
 {% endblock title %}
 {% block content %}
 <link href="{% static "css/fees/fees.css" %}" rel="stylesheet"/>
-<h1>{{title}}</h1>
+<h1>{{title}} <i class="fa-solid fa-dollar-sign"></i></h1>
 <p>{{message}}</p>
 <p>data coming from backend</p>
 {% for key,values in data.items %}

@@ -1,0 +1,1 @@
+console.log("course js is linked successfully");

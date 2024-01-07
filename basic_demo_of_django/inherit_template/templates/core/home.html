@@ -9,7 +9,7 @@
         <link href="{% static "css/fontawesome/all.css" %}" rel="stylesheet"/>
     </head>
     <body>
-        <h1>This is a home page</h1>
+        <h1>This is a home page <i class="fa-solid fa-house"></i></h1>
         <p>This is a home page also a parent page</p>
         {% block content %}
         <form method="post" action="{% url "course" %}">
@@ -30,4 +30,5 @@
     <script src="{% static "js/jquery/jquery.js" %}"></script>
     <script src="{% static "js/fontawesome/all.js" %}"></script>
     <script src="{% static "js/bootstrap/bootstrap.js" %}"></script>
+    <script src="https://kit.fontawesome.com/227d2d7f20.js" crossorigin="anonymous"></script>
 </html>

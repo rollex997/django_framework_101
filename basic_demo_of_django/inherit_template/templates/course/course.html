@@ -5,7 +5,7 @@ course
 {% endblock title %}
 {% block content %}
 <link href="{% static "css/course/course.css" %}" rel='stylesheet'/>
-<h1>{{data.course}}</h1>
+<h1>{{data.course}} <i class="fa-brands fa-discourse"></i></h1>
 <p>{{data.messege}}</p>
 <form method="post" action="{% url "home" %}">
     {% csrf_token %}

@@ -1,0 +1,22 @@
+{% extends "home/home.html" %}
+{% load static %}
+{% block title %}{{title}}{% endblock title %}
+{% block content %}
+<link rel="stylesheet" href="{% static "css/fees/fees.css" %}"/>
+<h1>This is a {{title}} course page</h1>
+<p>Data coming from backend</p>
+<select class="form-select" id="select">
+    {% for key,values in data.items %}
+    <option value={{values}}>{{key}}</option>
+    {% endfor %}
+</select>
+<p>data coming from views.py functions using ajax</p>
+<input type="text" class="form-group" id="select_option_value"/>
+<button id="submit" class="btn btn-success">Get selected value</button>
+
+<form method="post" action="{% url "home" %}">
+    {% csrf_token %}
+    <button class = "btn btn-secondary">Go back</button>
+</form>
+<script src="{% static "js/fees/fees.js" %}"></script>
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% load static %}
+<html>
+    <head>
+        <title>{% block title %}{{title}}{% endblock title %}</title>
+        <link rel="stylesheet" href="{% static "css/bootstrap/bootstrap.css" %}"/>
+        <link rel="stylesheet" href="{% static "css/fontawesome/all.css" %}"/>
+        <link rel="stylesheet" href="{% static "css/core/home.css" %}"/>
+        <script src="{% static "js/jquery/jquery.js" %}"></script>
+    </head>
+    <body>
+        <h1>{{heading}}</h1>
+        {% block content %}
+        <form method="post" action="{% url "course" %}">
+            {% csrf_token %}
+            <button class="btn btn-primary">Go to course page</button>
+        </form>
+        <form method="post" action="{% url "fees" %}">
+            {% csrf_token %}
+            <button class="btn btn-primary">Go to fees page</button>
+        </form>
+        {% endblock content %}
+    </body>
+</html>
+<script src="{% static "js/bootstrap/bootstrap.js" %}"></script>
+<script src="{% static "js/fontawesome/all.js" %}"></script>
+<script src="{% static "js/core/home.js" %}"></script>
