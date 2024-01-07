@@ -1,5 +1,8 @@
 {% extends "core/home.html" %}
 {% load static %}
+{% block title %}
+result
+{% endblock title %}
 {% block content %}
 <link rel="stylesheet" href="{% static "css/result/result.css" %}"/>
 <h1>{{title}}</h1>
@@ -10,7 +13,7 @@
 {% endfor %}
 <form method="post" action="{% url "home" %}">
     {% csrf_token %}
-    <button>go back</button>
+    <button class="btn btn-secondary">go back</button>
 </form>
 <script src="{% static "js/result/result.js" %}"></script>
 {% endblock content %}

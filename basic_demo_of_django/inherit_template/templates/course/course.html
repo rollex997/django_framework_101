@@ -1,12 +1,15 @@
 {% extends "core/home.html" %}
 {% load static %}
+{% block title %}
+course
+{% endblock title %}
 {% block content %}
 <link href="{% static "css/course/course.css" %}" rel='stylesheet'/>
 <h1>{{data.course}}</h1>
 <p>{{data.messege}}</p>
 <form method="post" action="{% url "home" %}">
     {% csrf_token %}
-    <button>go back</button>
+    <button class="btn btn-secondary">go back</button>
 </form>
 <script src="{% static "js/course/course.js" %}"></script>
 {% endblock content %}
