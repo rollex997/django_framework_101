@@ -5,14 +5,7 @@
 <link rel="stylesheet" href="{% static "css/fees/fees.css" %}"/>
 <h1>This is a {{title}} course page</h1>
 <p>Data coming from backend</p>
-<select class="form-select" id="select">
-    {% for key,values in data.items %}
-    <option value={{values}}>{{key}}</option>
-    {% endfor %}
-</select>
-<p>data coming from views.py functions using ajax</p>
-<input type="text" class="form-group" id="select_option_value"/>
-<button id="submit" class="btn btn-success">Get selected value</button>
+{% include "fees/fees_selector.html" with p="php" %}
 
 <form method="post" action="{% url "home" %}">
     {% csrf_token %}
