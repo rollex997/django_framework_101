@@ -1,0 +1,35 @@
+{% extends "core/home.html" %}
+{% load static %}
+{% block content %}
+<link href="{% static 'css/back_button/back_button.css' %}" rel="stylesheet"/>
+<link href="{% static 'css/services/services.css' %}" rel="stylesheet"/>
+<div class="row">
+    <div class="col-sm-1">
+        <h1>
+            <form method="post" action="{% url "home" %}">
+                {% csrf_token %}
+                <button class="back_button"><i class="fa-solid fa-arrow-left"></i></button>
+            </form>
+        </h1>
+    </div>
+    <div class="col-sm-6">
+        <h1>Services page</h1>
+    </div>
+    <div class="col-sm-5"></div>
+</div>
+<div class="container mt-5">
+<div class="row ">
+        <!--wrap this entire block in a for loop-->
+        <div class="col-sm-12 col-lg-6 col-xl-4 p-2 gx-4">
+            <div class="card card_style" style="width: 18rem;">
+                <div class="card-body text-center">
+                  <h1 class="card-title"><i class="fa-brands fa-searchengin"></i></h2>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">SEO</h6>
+                  <p class="card-text text-justify">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+        </div>
+        <!--wrap this entire block in a for loop-->
+</div>
+</div>
+{% endblock content %}

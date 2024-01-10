@@ -1,0 +1,19 @@
+{% extends "core/home.html" %}
+{% load static %}
+{% block content %}
+<link href="{% static 'css/back_button/back_button.css' %}" rel="stylesheet"/>
+<div class="row">
+    <div class="col-sm-1">
+        <h1>
+            <form method="post" action="{% url "home" %}">
+                {% csrf_token %}
+                <button class="back_button"><i class="fa-solid fa-arrow-left"></i></button>
+            </form>
+        </h1>
+    </div>
+    <div class="col-sm-7">
+        <h1>Education page</h1>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+{% endblock content %}

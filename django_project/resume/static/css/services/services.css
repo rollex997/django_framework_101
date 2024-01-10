@@ -1,0 +1,8 @@
+.card_style{
+  background:transparent !important;
+  border:2px solid white !important;
+  border-radius: 5% !important;
+}
+.card_col{
+  align-items: center;
+}

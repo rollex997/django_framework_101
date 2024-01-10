@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home{% endblock title %}</title>
+    <script src="{% static "js/jquery/jquery.js" %}"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <link rel="stylesheet" href="{% static 'css/core/home.css' %}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,300&display=swap" rel="stylesheet">
+    
+</head>
+<body class="bg-dark" style="height:950px">
+    <div class="row container-fluid text-white" style="height:100%">
+        <!--nav bar constant-->
+        {% include "core/nav.html" %}
+        <!--nav bar constant-->
+
+        <!--home page change-->
+        <div class="col-sm-9 mt-5 h-100">
+            {% block content %}
+            <div class="row">
+                <!--profile image-->
+                <img src="{% static 'images/im_6.jpg' %}" class="rounded mx-auto d-block w-25 border border-dark img-thumbnail" alt="...">
+                <!--profile image-->
+            </div>
+            <div class="row container">
+                <h3 class="mt-5">Hello,</h3>
+                <div class="container text-justify" style="font-family: 'Exo 2', sans-serif; font-weight:bolder;">
+                <p style="text-indent:10%;">{{data.intro}}<span class="font-weight-bolder text-primary">{{data.name}}</span>{{data.intro2}}</p>
+                </div>
+            </div>
+
+            <!--like buttons start-->
+            <div class="row text-center">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <a href="#" class="btn btn-primary">Hire me</a>
+                </div>
+                <div class="col-sm-3">
+                    <a href="#" class="btn btn-outline-primary">Contact Me</a>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+            <!--like buttons ends-->
+            {% endblock content %}
+        </div>
+        <!--home page change-->
+    </div>
+</body>
+</html>
+<link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/fontawesome/all.css' %}"/>
+<script src="{% static "js/fontawesome/all.js" %}"></script>
+<script src="{% static "js/bootstrap/bootstrap.js" %}"></script>
+<script src="{% static "js/core/home.js" %}"></script>

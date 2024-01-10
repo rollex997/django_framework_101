@@ -1,0 +1,14 @@
+.back_button{
+    color: white;
+    background: transparent;
+    border:none;
+    outline: none;
+    transition:1s;
+   }
+.back_button:hover{
+    color: #3093f6;
+    background: transparent;
+    border:none;
+    outline: none;
+    transition:1s;
+   }

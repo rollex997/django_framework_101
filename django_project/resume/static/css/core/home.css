@@ -1,0 +1,17 @@
+.img_width{
+    width:55%;
+}
+.nav_width{
+    width:100%;
+}
+.li_style{
+    background:transparent !important;
+    color:white !important;
+    transition: all 1s !important;
+}
+.li_style:hover{
+    background: #8dc6ff !important;
+    color:white !important;
+    transition: all 1s !important;
+
+}

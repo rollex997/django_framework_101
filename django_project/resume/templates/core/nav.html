@@ -1,0 +1,26 @@
+{% load static %}
+<div class="col-sm-3">
+    <div class="row">
+        <div class="text-center border-bottom border-primary">
+            <p><img src="{% static 'images/im_6.jpg' %}" class="rounded mx-auto d-block img_width border border-dark mt-5 img-thumbnail" alt="..."></p>
+            <h4 class="my-2">Aditya Kumar</h4>
+          </div>
+        <div class="nav_width mt-3">
+            <ul class="nav flex-column text-center">
+                <li class="nav-item li_style">
+                  <a class="btn text-white font-weight-bolder w-100" href="{% url "home" %}">Home</a>
+                </li>
+                <li class="nav-item li_style">
+                  <a class="btn text-white font-weight-bolder w-100" href="{% url "education" %}">Education</a>
+                </li>
+                <li class="nav-item li_style">
+                  <a class="btn text-white font-weight-bolder w-100" href="{% url "contact" %}">Contact</a>
+                </li>
+                <li class="nav-item li_style">
+                  <a class="btn text-white font-weight-bolder w-100" href="{% url "service" %}">Services</a>
+                </li>
+              </ul>
+        </div>
+    </div>
+    <div class="row h-100"></div>
+</div>
