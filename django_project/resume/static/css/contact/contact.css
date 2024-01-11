@@ -1,0 +1,13 @@
+.card_style{
+    background:transparent !important;
+    border:2px solid white !important;
+    border-radius: 5% !important;
+    transition:1s;
+  }
+  .card_style:hover{
+    background:transparent !important;
+    border:2px solid white !important;
+    border-radius: 5% !important;
+    box-shadow: 10px 10px 20px black;
+    transition:1s;
+  }

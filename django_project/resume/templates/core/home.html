@@ -38,10 +38,10 @@
             <div class="row text-center">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-3">
-                    <a href="#" class="btn btn-primary">Hire me</a>
+                    <a href="{% url "contact" %}" class="btn btn-primary">Hire me</a>
                 </div>
                 <div class="col-sm-3">
-                    <a href="#" class="btn btn-outline-primary">Contact Me</a>
+                    <a href="{% url "contact" %}" class="btn btn-outline-primary">Contact Me</a>
                 </div>
                 <div class="col-sm-3"></div>
             </div>
@@ -54,6 +54,6 @@
 </html>
 <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}"/>
 <link rel="stylesheet" href="{% static 'css/fontawesome/all.css' %}"/>
+<script src="{% static "js/core/home.js" %}"></script>
 <script src="{% static "js/fontawesome/all.js" %}"></script>
 <script src="{% static "js/bootstrap/bootstrap.js" %}"></script>
-<script src="{% static "js/core/home.js" %}"></script>

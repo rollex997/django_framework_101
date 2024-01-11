@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 <link href="{% static 'css/back_button/back_button.css' %}" rel="stylesheet"/>
+<link href="{% static 'css/contact/contact.css' %}" rel="stylesheet"/>
 <div class="row">
     <div class="col-sm-1">
         <h1>
@@ -15,5 +16,42 @@
         <h1>Contact page</h1>
     </div>
     <div class="col-sm-5"></div>
+</div>
+<div class="container">
+    <div class="row w-100">
+        <!--wrap this entire block in a for loop-->
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 p-2 gx-5 card-deck">
+            <div class="card card_style" style="width: 18rem;">
+                <div class="card-body text-center">
+                  <h1 class="card-title"><i class="fa-brands fa-linkedin"></i></h2>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Linkedin</h6>
+                  <p class="card-text text-justify">You can find me on Linkedin
+                  </p>
+                  <a class="btn btn-light" href="https://www.linkedin.com/in/aditya-k-610796243/" target="_blank">Open Linkedin</a>
+                </div>
+              </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 p-2 gx-5 card-deck">
+            <div class="card card_style" style="width: 18rem;">
+                <div class="card-body text-center">
+                  <h1 class="card-title"><i class="fa-regular fa-envelope"></i></i></h2>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Mail</h6>
+                  <p class="card-text text-justify">Mail me your enquiry or request.</p>
+                  <a class="btn btn-light" href="mailto:aryan68125@gmail.com" target="_blank">Mail me</a>
+                </div>
+              </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 p-2 gx-5 card-deck">
+            <div class="card card_style" style="width: 18rem;">
+                <div class="card-body text-center">
+                  <h1 class="card-title"><i class="fa-brands fa-github"></i></h2>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Github</h6>
+                  <p class="card-text text-justify">Feel free to go and visit my github page if you have come this far to see my projects.</p>
+                  <a class="btn btn-light" href="https://github.com/aryan68125" target="_blank">Visit Github</a>
+                </div>
+              </div>
+        </div>
+        <!--wrap this entire block in a for loop-->
+</div>
 </div>
 {% endblock content %}
