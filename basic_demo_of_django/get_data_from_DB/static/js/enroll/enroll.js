@@ -2,9 +2,6 @@ $('body').ready(function(){
     console.log("enroll.js");
     get_data();
 })
-$('body').on('click','#get_data', function(){
-    get_data();
-})
 
 function get_data(){
     url = enrollApiUrl;
@@ -34,7 +31,6 @@ function get_data(){
             `)
         }
         //data table ends
-        // console.log(`SID : ${data[i].SID} name : ${data[i].name} mobile : ${data[i].mobile} email : ${data[i].email} password : ${data[i].password}`)
       });
 }
 
