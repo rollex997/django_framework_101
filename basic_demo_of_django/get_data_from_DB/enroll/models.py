@@ -9,5 +9,8 @@ class Student(models.Model):
     mobile = models.CharField(max_length=10)
     email = models.EmailField(max_length=20)
     password = models.CharField(max_length=20)
+    #this is to make our data Human readable in admin panel 
+    #after registering this model in admin application
     def __str__(self):
+        #This will show the ID and name of the student in the list
         return f"{self.SID} - {self.name}"
