@@ -1,0 +1,57 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+{{title}}
+{% endblock title %}
+{% block content %}
+<link href="{% static 'css/enroll/enroll.css' %}" rel="stylesheet"/>
+<div class="container">
+    <h1>This is an {{title}} page <i class="fa-solid fa-house fa-shake"></i></h1>
+    <p>Get data using inbuilt django functions</p>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">SID</th>
+            <th scope="col">name</th>
+            <th scope="col">mobile</th>
+            <th scope="col">email</th>
+            <th scope="col">password</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if Student %}
+            {% for values in Student %}
+            <tr>
+                <td>{{values.SID}}</td>
+                <td>{{values.name}}</td>
+                <td>{{values.mobile}}</td>
+                <td>{{values.email}}</td>
+                <td>{{values.password}}</td>
+              </tr>
+            {% endfor %}
+            {% else %}
+            <p>No data</p>
+            {% endif %}
+        </tbody>
+      </table>
+
+      <p>Get data using ajax</p>
+      <script>
+        var enrollApiUrl = "{% url 'enroll_api' %}";
+      </script>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">name</th>
+            <th scope="col">mobile</th>
+            <th scope="col">email</th>
+            <th scope="col">password</th>
+          </tr>
+        </thead>
+        <tbody id="StudentTable">
+            
+        </tbody>
+      </table>
+</div>
+<script src="{% static 'js/enroll/enroll.js' %}"></script>
+{% endblock content %}
