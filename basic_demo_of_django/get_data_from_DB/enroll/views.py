@@ -6,7 +6,7 @@ def enroll(request):
     Students = Student.objects.all()
     data = {'title' : 'Enroll', 'Student' : Students}
     return render(request,"enroll/enroll.html",data)
-def enroll_api(request):
+def get_all_data_api(request):
     
     is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
 

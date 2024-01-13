@@ -7,6 +7,7 @@
 <link href="{% static 'css/enroll/enroll.css' %}" rel="stylesheet"/>
 <div class="container">
     <h1>This is an {{title}} page <i class="fa-solid fa-house fa-shake"></i></h1>
+    <h1>Get all data</h1>
     <p>Get data using inbuilt django functions</p>
     <table class="table">
         <thead>
@@ -37,7 +38,7 @@
 
       <p>Get data using ajax</p>
       <script>
-        var enrollApiUrl = "{% url 'enroll_api' %}";
+        var enrollApiUrl = "{% url 'get_all_data_api' %}";
       </script>
       <table class="table">
         <thead>
@@ -56,4 +57,3 @@
 </div>
 <script src="{% static 'js/enroll/enroll.js' %}"></script>
 {% endblock content %}
-enrollApiUrl_DataTable
