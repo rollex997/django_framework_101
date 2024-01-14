@@ -18,10 +18,12 @@ function get_data(){
         console.log(data.context.length);
         // console.log(data_got);
         //data table starts
+        var k=1;
         $(`#StudentTable`).empty()
         for ( var i = 0; i<data.context.length;i++){
             $(`#StudentTable`).append(`
             <tr>
+                    <td>${k++}</td>
                     <td>${data.context[i].SID}</td>
                     <td>${data.context[i].name}</td>
                     <td>${data.context[i].mobile}</td>

@@ -1,0 +1,1 @@
+git commit -m "get data from DB and show it in a table in html using django template and ajax register model in admin"
