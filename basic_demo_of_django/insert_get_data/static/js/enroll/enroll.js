@@ -1,3 +1,4 @@
+var ID=0;
 $('body').ready(function(){
     console.log("enroll js is linked successfully");
     $(`#form_insert_data`).empty();
@@ -44,7 +45,14 @@ function create_insert_data_form(){
 }
 /* Submit button logic starts*/ 
 $('body').on('click','#submit_button',function(){
-    insert_data();
+    if(ID==0){
+        insert_data();
+        clear_input_fields();
+    }
+    else{
+        edit_data();
+        clear_input_fields();
+    }
 })
 function getCookie(name) {
     let cookieValue = null;
@@ -87,11 +95,14 @@ function insert_data(){
 
 /* candel button logic starts */
 $(`body`).on('click','#cancel_button', function(){
-    $(`#name`).val("")
-    $(`#mobile`).val("")
-    $(`#city`).val("")
-    $(`#roll_no`).val("")
+    clear_input_fields();
 })
+function clear_input_fields(){
+    $(`#name`).val("");
+    $(`#mobile`).val("");
+    $(`#city`).val("");
+    $(`#roll_no`).val("");
+}
 /* candel button logic ends */
 //insert data logic ends
 
@@ -113,6 +124,7 @@ function show_data_table(){
                     <th scope="col">Mobile Number</th>
                     <th scope="col">City</th>
                     <th scope="col">Roll Number</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody id="data_table">
@@ -122,7 +134,6 @@ function show_data_table(){
     );
     get_data();
 }
-
 function get_data(){
     url = get_data_url;
     fetch(url, {
@@ -136,7 +147,7 @@ function get_data(){
         console.log(data);
         console.log(data.context[0].name);
         console.log(data.context.length);
-        // console.log(data_got);
+        data_backup = data;
         //data table starts
         var k=1;
         $(`#data_table`).empty()
@@ -144,11 +155,16 @@ function get_data(){
             $(`#data_table`).append(`
             <tr>
                     <td>${k++}</td>
-                    <td>${data.context[i].SID}</td>
-                    <td>${data.context[i].name}</td>
-                    <td>${data.context[i].mobile}</td>
-                    <td>${data.context[i].city}</td>
-                    <td>${data.context[i].roll_number}</td>
+                    <td class="data_ID">${data.context[i].SID}</td>
+                    <td class="name">${data.context[i].name}</td>
+                    <td class="mobile">${data.context[i].mobile}</td>
+                    <td class="city">${data.context[i].city}</td>
+                    <td class="roll_number">${data.context[i].roll_number}</td>
+                    <td><button class="btn btn-dark text-light" onclick="open_form('${data.context[i].SID}', 
+                    '${data.context[i].name}', '${data.context[i].mobile}', '${data.context[i].city}',
+                    '${data.context[i].roll_number}')"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-danger" onclick="data_delete('${data.context[i].SID}')"><i class="fa-solid fa-trash"></i></button>
+                    </td>
                   </tr>       
             `)
         }
@@ -156,3 +172,66 @@ function get_data(){
       });
 }
 //Get data logic ends
+
+//edit data logic starts
+function open_form(SID, name, mobile, city, roll_number){
+    ID = 0;
+    $(`#show_data_table_container`).empty();
+    create_insert_data_form();
+    ID = Number(SID);
+    console.log(`selected ID = ${ID}`);
+    $(`#name`).val(name);
+    $(`#mobile`).val(mobile);
+    $(`#city`).val(city);
+    $(`#roll_no`).val(roll_number);
+}
+function edit_data(){
+        var data = {
+            SID : ID,
+            name : $(`#name`).val(),
+            mobile : $(`#mobile`).val(),
+            city : $(`#city`).val(),
+            roll_no : parseInt($(`#roll_no`).val())
+        }
+        fetch(update_data_url, {
+            method: "PUT",
+            credentials: "same-origin",
+            headers: {
+              "X-Requested-With": "XMLHttpRequest",
+              "X-CSRFToken": getCookie("csrftoken"),  // don't forget to include the 'getCookie' function
+            },
+            body: JSON.stringify({payload: data})
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+          });
+          ID = 0;
+}
+//edit data logic ends
+
+//delete_data logic starts
+function data_delete(ID){
+    var data = {
+        SID : ID
+    }
+    var choice = confirm("Are you sure you want to delete record?");
+    if(choice==true){
+        fetch(delete_data_url, {
+            method: "PUT",
+            credentials: "same-origin",
+            headers: {
+              "X-Requested-With": "XMLHttpRequest",
+              "X-CSRFToken": getCookie("csrftoken"),  // don't forget to include the 'getCookie' function
+            },
+            body: JSON.stringify({payload: data})
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            show_data_table();
+          });
+          //refresh the table after deleting the record
+    }
+}
+//delete_data logic ends
