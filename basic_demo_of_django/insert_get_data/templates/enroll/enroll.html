@@ -1,0 +1,36 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+{{title}}
+{% endblock title %}
+{% block content %}
+<link href="{% static "css/enroll/enroll.css" %}" rel="stylesheet"/>
+<script>
+    var insert_data_url = "{% url 'insert_data' %}"
+    var get_data_url = "{% url 'get_data' %}"
+</script>
+<div class="container">
+    <div class="row">
+        <h1>This is a {{title}} page <i class="fa-solid fa-house fa-shake"></i></h1>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-3 col-lg-3 mb-3">
+                    <button class="btn btn-success" id="insert_data">Insert data</button>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3 mb-3">
+                    <button class="btn btn-warning text-white" id="show_data">Show Data</button>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="form_insert_data">
+            <!--Generating form dynamically using jquery and javascript-->
+        </div>
+        <div class="container" id="show_data_table_container">
+            
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/enroll/enroll.js' %}"></script>
+{% endblock content %}
