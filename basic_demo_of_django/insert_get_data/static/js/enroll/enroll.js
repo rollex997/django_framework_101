@@ -134,6 +134,7 @@ function show_data_table(){
     );
     get_data();
 }
+//get data using get method
 function get_data(){
     url = get_data_url;
     fetch(url, {

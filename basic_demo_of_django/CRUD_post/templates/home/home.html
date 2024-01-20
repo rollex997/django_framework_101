@@ -1,0 +1,15 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+{{title}}
+{% endblock title %}
+{% block navbar_title %}
+{{title}}
+{% endblock navbar_title %}
+{% block content %}
+<link href="{% static 'css/home/home.css' %}"/>
+<div class="container">
+    <h1>This is a home page <i class="fa-solid fa-house"></i></h1>
+</div>
+<script src="{% static 'js/home/home.js' %}"></script>
+{% endblock content %}
