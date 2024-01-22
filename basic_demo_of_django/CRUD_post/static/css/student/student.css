@@ -1,4 +1,12 @@
-h1
+h3
 {
-    color:violet;
+    color:rgb(243, 12, 243);
 }
+.table_style {
+    height: 300px;
+    overflow-y: scroll;
+  }
+  .student_table_style{
+    height: 300px;
+    overflow-y: scroll;
+  }

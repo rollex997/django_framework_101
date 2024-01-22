@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'sslserver',
     'home',
     'student',
+    'result',
 ]
 
 MIDDLEWARE = [
