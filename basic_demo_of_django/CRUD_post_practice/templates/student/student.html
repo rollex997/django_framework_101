@@ -1,0 +1,117 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+{{title}}
+{% endblock title %}
+{% block content %}
+<script>
+  var insert_student_info = "{% url "insert_student_info" %}";
+  var Read_student_info = "{% url "Read_student_info" %}";
+  var Update_student_info = "{% url "Update_student_info" %}";
+  var delete_student_info = "{% url "delete_student_info" %}";
+</script>
+<link href="{% static 'css/student/student.css' %}" rel="stylesheet"/>
+<div class="container">
+  <div class="row">
+    <h3>This is a {{title}} page : <i class="fa-solid fa-user"></i></h3>
+  </div>
+  <!--Input form starts-->
+  <div class="mb-2">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name">
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="mb-3">
+          <label for="roll_no" class="form-label">Roll No</label>
+          <input type="text" class="form-control" id="roll_no" >
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="mb-3">
+          <label for="mobile" class="form-label">Mobile</label>
+          <input type="text" class="form-control" id="mobile">
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="mb-3">
+          <label for="father_name" class="form-label">Father's name</label>
+          <input type="text" class="form-control" id="father_name">
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="mb-3">
+          <label for="mother_name" class="form-label">Mother's name</label>
+          <input type="text" class="form-control" id="mother_name">
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="mb-3">
+          <label for="father_mobile" class="form-label">Father's mobile</label>
+          <input type="text" class="form-control" id="father_mobile">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-3"></div>
+      <div class="col-3"></div>
+      <div class="col-1"></div>
+      <div class="col-2">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <button class="btn btn-success mb-1" id="submit_button">Submit</button>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <button class="btn btn-danger mb-1" id="cancel_button">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Input form ends-->
+
+  <!--Table to show data starts-->
+  <div class="row">
+    <div class="table-responsive table_style">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sr no</th>
+            <th scope="row" style="display:none;">ID</th>
+            <th>Name</th>
+            <th>Roll No</th>
+            <th>Mobile</th>
+            <th>Father's Name</th>
+            <th>Mother's Name</th>
+            <th>Father's Mobile number</th>
+            <th>Actions</th>
+            {% comment %} student_ID = models.BigAutoField(primary_key=True) {% endcomment %}
+          </tr>
+        </thead>
+        <tbody id="student_info_table">
+          <tr>
+            <td>0</td>
+            <td scope="row" style="display:none;">NAN</td>
+            <td>NAN</td>
+            <td>NAN</td>
+            <td>NAN</td>
+            <td>NAN</td>
+            <td>NAN</td>
+            <td>NAN</td>
+            <td>
+              <button class="btn btn-dark mb-1"><i class="fa-solid fa-pen"></i></button>
+              <button class="btn btn-danger mb-1"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--Table to show data ends-->
+</div>
+<script src="{% static 'js/student/student.js' %}"></script>
+{% endblock content %}

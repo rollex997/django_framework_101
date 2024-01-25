@@ -1,0 +1,171 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+{{title}}
+{% endblock title %}
+{% block navbar_title %}
+{{title}}
+{% endblock navbar_title %}
+{% block content %}
+<script>
+    var get_data_url = "{% url "get_student_info" %}";
+    var insert_marks_url = "{% url "insert_marks" %}";
+    var get_marks_data_url = "{% url "get_marks" %}";
+    var update_marks_data_url = "{% url "update_marks" %}";
+    var delete_marks_data_url = "{% url "delete_marks" %}";
+</script>
+<link rel="stylesheet" href="{% static 'css/result/result.css' %}"/>
+<div class="container">
+    <div class="row">
+        <h3>{{title}} page : <i class="fa-solid fa-square-poll-vertical"></i></h3>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <h3>Student : </h3>
+    </div>
+    <div class="row">
+        <div class="table-responsive table_style">
+            <table class="table ">
+                <thead>
+                  <tr>
+                    <th scope="col">Sr no</th>
+                    <th style="display:none;">ID</th>
+                    <th>Name</th>
+                    <th>Roll No</th>
+                    <th>Mobile</th>
+                    <th>Father's Name</th>
+                    <th>Mother's Name</th>
+                    <th>Father's Mobile number</th>
+                    <th>Assign Marks</th>
+                    
+                  </tr>
+                </thead>
+                <tbody id="student_info_table">
+                  <tr>
+                    <td>0</td>
+                    <th scope="row" style="display:none;">NAN</th>
+                    <td>NAN</td>
+                    <td>NAN</td>
+                    <td>NAN</td>
+                    <td>NAN</td>
+                    <td>NAN</td>
+                    <td>NAN</td>
+                    <td>
+                      <button class="btn btn-dark mb-1"><i class="fa-solid fa-pen"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <h3>Enter marks :</h3>
+    </div>
+    <div class="row">
+        <div class="mb-3">
+            <h5 id="student_name" class="student_name">Student's name</h5>
+            <p id="marks_ID_" style="display:none"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="mb-3">
+              <label for="science" class="form-label">Science</label>
+              <input type="text" class="form-control" id="science">
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="mb-3">
+              <label for="math" class="form-label">Math</label>
+              <input type="text" class="form-control" id="math" >
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="mb-3">
+              <label for="computerScience" class="form-label">Computer Science</label>
+              <input type="text" class="form-control" id="computerScience">
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="mb-3">
+              <label for="totalMarksPerSubject" class="form-label">Total marks per subject</label>
+              <input type="text" class="form-control" id="totalMarksPerSubject">
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="mb-3">
+              <label for="passingPercentage" class="form-label">Passing Percentage</label>
+              <input type="text" class="form-control" id="passingPercentage">
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <br/>
+          </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1 col-md-2 col-sm-2"></div>
+        <div class="col-lg-1 col-md-2 col-sm-2"></div>
+        <div class="col-lg-1 col-md-2 col-sm-2"></div>
+        <div class="col-lg-1 col-md-2 col-sm-2"></div>
+        <div class="col-lg-1 col-md-2 col-sm-2"></div>
+        <div class="col-lg-1 col-md-2 col-sm-2"></div>
+        <div class="col-lg-1 col-md-2 col-sm-2"></div>
+        <div class="col-lg-1 col-md-2 col-sm-2"></div>
+        <div class="col-lg-1 col-md-2 col-sm-2"></div>
+        <div class="col-lg-1 col-md-2 col-sm-2"></div>
+        <div class="col-lg-1 col-md-2 col-sm-2">
+              <button class="btn btn-success mb-1" id="submit_button">Submit</button>
+        </div>
+        <div class="col-lg-1 col-md-2 col-sm-2">
+              <button class="btn btn-danger mb-1" id="cancel_button">Cancel</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-responsive student_table_style">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Sr no</th>
+                    <th style="display:none;">ID</th>
+                    <th style="display:none;">student_ID</th>
+                    <th>Student's Name</th>
+                    <th>Science</th>
+                    <th>Math</th>
+                    <th>Computer Science</th>
+                    <th>Total marks per subject</th>
+                    <th>Total marks obtained</th>
+                    <th>Percentage</th>
+                    <th>Passing percentage</th>
+                    <th>Pass/Fail</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="marks_info_table">
+                  <tr>
+                    <td>0</td>
+                    <th scope="row" style="display:none;">NAN</th>
+                    <th scope="row" style="display:none;">NAN</th>
+                    <td>NAN</td>
+                    <td>NAN</td>
+                    <td>NAN</td>
+                    <td>NAN</td>
+                    <td>NAN</td>
+                    <td>NAN</td>
+                    <td>NAN</td>
+                    <td>NAN</td>
+                    <td>NAN</td>
+                    <td>
+                      <button class="btn btn-dark mb-1"><i class="fa-solid fa-pen"></i></button>
+                      <button class="btn btn-danger mb-1"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+<script src={% static 'js/result/result.js' %}></script>
+{% endblock content %}

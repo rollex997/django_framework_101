@@ -1,0 +1,14 @@
+h3{
+    color:green;
+}
+.student_name{
+  color:green;
+}
+.table_style {
+  height: 300px;
+  overflow-y: scroll;
+}
+.student_table_style{
+  height: 300px;
+  overflow-y: scroll;
+}
