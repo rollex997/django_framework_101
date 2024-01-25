@@ -32,6 +32,19 @@ function getCookie(name) {
   }
 /* miscellanious code related to the page ends */
 
+/* Send Data using onclick method in another page */
+function send_data_to_another_page(ID){
+
+    var target_page_url =`recieve_data_from_student_app/${ID}/`;
+    fetch(
+        target_page_url
+    ).then(response=>response.json())
+    .then(data=>{console.log(data)
+        window.location.href = `/?id=${ID}`;
+    }   )
+}
+/* Send Data using onclick method in another page */
+
 /* Insert , Update Data starts */
 $(`body`).on(`click`,'#submit_button', function(){
     if(ID!=0){
@@ -138,7 +151,7 @@ $('body').ready(function(){
 })
 function CreateTable(data,i){
     $(`#student_info_table`).append(`
-    <tr>
+    <tr onclick="send_data_to_another_page('${data.context[i].student_ID}')">
     <td>${i}</td>
     <td scope="row" style="display:none;">${data.context[i].student_ID}</td>
     <td>${data.context[i].student_name}</td>

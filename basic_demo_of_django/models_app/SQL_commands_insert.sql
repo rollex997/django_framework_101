@@ -1,3 +1,3 @@
 
-SELECT * FROM student_student_info;
+SELECT * FROM student_student;
 SELECT * FROM result_marks;
