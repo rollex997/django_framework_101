@@ -10,12 +10,13 @@ def home(request):
         'title' : title_
     }
     return render(request,'home/home.html',data)
-def get_Id(request,id):
-    print (id)
-    if id:
-        return JsonResponse({'status':"ID recieved"},status=200)
-    else:
-        return JsonResponse({'status':'could not recieve any ID from student page/app'},status=404)
+#get Id using django's dynamic url
+# def get_Id(request,id):
+#     print (id)
+#     if id:
+#         return JsonResponse({'status':"ID recieved"},status=200)
+#     else:
+#         return JsonResponse({'status':'could not recieve any ID from student page/app'},status=404)
 def get_data_by_ID(request):
     is_ajax = request.headers.get("X-Requested-With") == "XMLHttpRequest"
     if is_ajax:

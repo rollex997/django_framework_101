@@ -34,10 +34,11 @@ function getCookie(name) {
 
 /* Send Data using onclick method in another page */
 function send_data_to_another_page(ID){
+    // send ID using django's dynamic url
+    // var target_page_url =`recieve_data_from_student_app/${ID}/`;
 
-    var target_page_url =`recieve_data_from_student_app/${ID}/`;
     fetch(
-        target_page_url
+        send_student_info
     ).then(response=>response.json())
     .then(data=>{console.log(data)
         window.location.href = `/?id=${ID}`;
@@ -151,7 +152,7 @@ $('body').ready(function(){
 })
 function CreateTable(data,i){
     $(`#student_info_table`).append(`
-    <tr onclick="send_data_to_another_page('${data.context[i].student_ID}')">
+    <tr ondblclick="send_data_to_another_page('${data.context[i].student_ID}')">
     <td>${i}</td>
     <td scope="row" style="display:none;">${data.context[i].student_ID}</td>
     <td>${data.context[i].student_name}</td>
