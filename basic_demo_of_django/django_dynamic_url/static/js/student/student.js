@@ -86,7 +86,15 @@ function insert_data(){
         ).then(response=>response.json())
         .then(
             data=>{
-                console.log(data);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Student data has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                  },{
+                    
+                  });
                 read_data();
                 reset_form();
             }
@@ -147,7 +155,6 @@ function read_data(){
 
 /* update data starts */
 function update_data(){
-    console.log(ID);
     var data = {
         student_ID : ID,
         Student_Name : $('#Student_Name').val(),
@@ -156,22 +163,36 @@ function update_data(){
         mobile : $('#mobile').val(),
         email : $('#email').val(),
     }
-    fetch(
-        update_data_url,
-        {
-            method : "POST",
-            credentials : "same-origin",
-            headers:{
-                "X-Requested-With" : "XMLHttpRequest",
-                "X-CSRFToken" : getCookie("csrftoken"),
-            },
-            body : JSON.stringify({payload : data})
+    Swal.fire({
+        title: "Do you want to save the changes?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          Swal.fire("Saved!", "", "success");
+        fetch(
+            update_data_url,
+            {
+                method : "POST",
+                credentials : "same-origin",
+                headers:{
+                    "X-Requested-With" : "XMLHttpRequest",
+                    "X-CSRFToken" : getCookie("csrftoken"),
+                },
+                body : JSON.stringify({payload : data})
+            }
+        ).then(response=>response.json())
+        .then(data=>{
+            console.log(data);
+            read_data();
+        })
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
         }
-    ).then(response=>response.json())
-    .then(data=>{
-        console.log(data);
-        read_data();
-    })
+      });
 }
 /* update data ends */
 
