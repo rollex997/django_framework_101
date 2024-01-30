@@ -4,7 +4,11 @@
 {{title}}
 {% endblock title %}
 {% block content %}
+<script>
+    var send_email_url = '{% url "send_email" %}';
+</script>
 <link rel="stylesheet" href="{% static 'css/student/student_details.css' %}"/>
+<p id = "email" style="display:none">{{email}}</p>
 <p id = "Maths" style="display:none">{{Maths}}</p>
 <p id = "Physics" style="display:none">{{Physics}}</p>
 <p id = "Chemistry" style="display:none">{{Chemistry}}</p>

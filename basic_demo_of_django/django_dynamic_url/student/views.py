@@ -1,9 +1,14 @@
+from django.core.mail import EmailMessage
+import os
 from django.http import JsonResponse
 from django.shortcuts import render,redirect
 from django.urls import reverse
 import json
 from student.models import *
 from marks.models import *
+
+from django.core.mail import send_mail
+import pandas as pd
 # Create your views here.
 def student(request):
     title_ = 'Student'
@@ -143,5 +148,48 @@ def student_details_page(request,ID):
                     'email' : Student_DB_instance.email,
             }
             return render(request,'student/student_details.html',data)
-    
+
+#send mail using smtp
+def send_email(request):
+    is_ajax = request.headers.get("X-Requested-With")=="XMLHttpRequest"
+    if is_ajax:
+        if request.method=='POST':
+            data = json.load(request)
+            email_data = data.get('payload')
+            email_addr = email_data['email']
+            marks_data = {
+                            "Maths" : email_data['Maths'],
+                            "Physics" : email_data['Physics'],
+                            "Chemistry" : email_data['Chemistry'],
+                            "Computer" : email_data['Computer'],
+                            "English" : email_data['English'],
+                            "Total_marks_obtained" : email_data['Total_marks_obtained'],
+                            "Total_Marks" : email_data['Total_Marks'],
+                            "Percentage" : email_data['Percentage'],
+                            "passing_percentage" : email_data['passing_percentage'],
+                            "pass_fail" : email_data['pass_fail'],
+            }
+            df = pd.DataFrame(data=marks_data, index=[0])
+            df = (df.T)
+            print (df)
+            # Save DataFrame to Excel file
+            excel_file_path = f"/home/aditya/github/django_training/basic_demo_of_django/django_dynamic_url/static/js/student/{email_data['student_name']}_marks.xlsx"
+            df.to_excel(excel_file_path)
+            
+             # Prepare email
+            subject = f"{email_data['student_name']}'s Marks are sent from Django"
+            message = "Please find attached the marks Excel file."
+            recipient_list = [email_addr]
+
+            # Create EmailMessage object and attach the Excel file
+            email = EmailMessage(subject, message, 'rollex68125@gmail.com', recipient_list)
+            email.attach_file(excel_file_path)
+
+            # Send the email
+            email.send()
+
+            # Delete the temporary Excel file after sending the email
+            os.remove(excel_file_path)
+
+            return JsonResponse({'status': 'email sent'})
 # student details page ends

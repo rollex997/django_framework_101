@@ -8,4 +8,5 @@ urlpatterns = [
     path('delete_student_data',delete_student_data,name='delete_student_data'),
     path('open_student_detail_page',student_details,name='open_student_detail_page'),
     path('student_details/<int:ID>',student_details_page,name='student_details'),
+    path('send_email',send_email,name='send_email'),
 ]

@@ -1,7 +1,24 @@
 var data_ ;
+//get CSRF Token from the cookies
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === (name + "=")) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
 $('body').ready(function(){
     var data = {
         student_name:$('#student_name').text(),
+        email:$('#email').text(),
     Maths : $(`#Maths`).text(),
     Physics : $(`#Physics`).text(),
     Chemistry : $(`#Chemistry`).text(),
@@ -63,7 +80,8 @@ function create_marks_card(marks){
             <div class="row">
                 <p class="card-text">Pass : ${icon}</p>
             </div>
-              <a href="#" class="btn btn-primary my-1" id="hide_marks">Hide</a>
+              <button class="btn btn-primary my-1" id="hide_marks">Hide</button>
+              <button class="btn btn-primary my-1" id="send_marks">Send Marks</button>
             </div>
           </div>
     </div>
@@ -89,3 +107,49 @@ $('body').on('click','#hide_marks',function(){
     $('#marks_card').empty()
     $('#marks_card').empty()
 })
+
+/* Send email using SMTP from django using Gmail account */
+$('body').on('click','#send_marks',function(){
+    send_marksSMTP(data_.email, data_.student_name, data_.Maths, data_.Physics, data_.Chemistry, data_.Computer, data_.English, data_.Total_marks_obtained, data_.Total_Marks, data_.Percentage, data_.passing_percentage, data_.pass_fail)
+})
+function send_marksSMTP(email, student_name, Maths, Physics, Chemistry, Computer, English, Total_marks_obtained, Total_Marks, Percentage, passing_percentage, pass_fail){
+    console.log(email)
+    var data = {
+        email : email,
+        student_name:student_name,
+        Maths:Maths,
+        Physics:Physics,
+        Chemistry:Chemistry,
+        Computer:Computer,
+        English:English,
+        Total_marks_obtained:Total_marks_obtained,
+        Total_Marks:Total_Marks,
+        Percentage:Percentage,
+        passing_percentage:passing_percentage,
+        pass_fail:pass_fail,
+    }
+    fetch(
+        send_email_url,{
+            method:'POST',
+            credentials:'same-origin',
+            headers:{
+                'X-Requested-With':'XMLHttpRequest',
+                'X-CSRFToken' : getCookie('csrftoken')
+            },
+            body:JSON.stringify({payload:data})
+        }
+    ).then(request=>request.json())
+    .then(data=>{
+        console.log(data)
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Marks sent!!",
+            showConfirmButton: false,
+            timer: 1500
+          },{
+            
+          });
+    })
+}
+/* Send email using SMTP from django using Gmail account */
