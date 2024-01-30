@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from django.urls import reverse
 import json
 from student.models import *
+from marks.models import *
 # Create your views here.
 def student(request):
     title_ = 'Student'
@@ -72,8 +73,10 @@ def delete_student_data(request):
         if request.method=="POST":
             data=json.load(request)
             deleted_value = data.get('payload')
+            print(deleted_value['student_ID'])
             try:
                 Student_DB_instance = Student.objects.get(pk=deleted_value['student_ID'])
+                print(f"{Student_DB_instance.Student_Name} , {Student_DB_instance.student_ID} deleted")
                 Student_DB_instance.delete()
                 return JsonResponse({'status':'Data Deleted successfully'},status=200)
             except Student.DoesNotExist:
@@ -83,6 +86,8 @@ def delete_student_data(request):
     else:
         return JsonResponse({'status':'ajax not found'},status=500)
     
+
+# student details page starts
 def student_details(request):
     is_ajax = request.headers.get("X-Requested-With") == "XMLHttpRequest"
     if is_ajax:
@@ -98,13 +103,45 @@ def student_details(request):
 def student_details_page(request,ID):
     if ID:
         Student_DB_instance = Student.objects.get(pk=ID)
-        data = {
-                'student_ID' : Student_DB_instance.student_ID,
-                'Student_Name' : Student_DB_instance.Student_Name,
-                'Father_Name' : Student_DB_instance.Father_Name, 
-                'roll_no' : Student_DB_instance.roll_no, 
-                'mobile' : Student_DB_instance.mobile,
-                'email' : Student_DB_instance.email,
-        }
-        print(data)
-    return render(request,'student/student_details.html',data)
+        try:
+            Student_Marks = Marks.objects.get(Student_ID = ID)
+            marks_settings = MarksSettings.objects.first()
+            passing_percentage = marks_settings.passing_percentage
+            Total_marks_per_subject = marks_settings.Total_marks_per_subject
+            Total_Marks = Total_marks_per_subject*6
+            data = {
+                    'student_ID' : Student_DB_instance.student_ID,
+                    'Student_Name' : Student_DB_instance.Student_Name,
+                    'Father_Name' : Student_DB_instance.Father_Name, 
+                    'roll_no' : Student_DB_instance.roll_no, 
+                    'mobile' : Student_DB_instance.mobile,
+                    'email' : Student_DB_instance.email,
+                    
+                    'Maths' : Student_Marks.Maths,
+                    'Physics' : Student_Marks.Physics,
+                    'Chemistry' : Student_Marks.Chemistry,
+                    'Computer' : Student_Marks.Computer,
+                    'English' : Student_Marks.English,
+                    'Hindi' : Student_Marks.Hindi,
+                    'Total_marks_obtained' : Student_Marks.Total_marks_obtained,
+                    'Total_Marks' : Total_Marks,
+                    'Percentage' : Student_Marks.Percentage,
+                    'passing_percentage' : passing_percentage,
+                    'pass_fail' : Student_Marks.pass_fail,
+            }
+            print(data)
+            return render(request,'student/student_details.html',data)
+        except Marks.DoesNotExist:
+            print("marks does not exist")
+            Student_DB_instance = Student.objects.get(pk=ID)
+            data = {
+                    'student_ID' : Student_DB_instance.student_ID,
+                    'Student_Name' : Student_DB_instance.Student_Name,
+                    'Father_Name' : Student_DB_instance.Father_Name, 
+                    'roll_no' : Student_DB_instance.roll_no, 
+                    'mobile' : Student_DB_instance.mobile,
+                    'email' : Student_DB_instance.email,
+            }
+            return render(request,'student/student_details.html',data)
+    
+# student details page ends

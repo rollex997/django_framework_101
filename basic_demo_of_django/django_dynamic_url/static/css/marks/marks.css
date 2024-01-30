@@ -1,5 +1,10 @@
-h3{
-    color:blue;
+h1{
+    color:yellowgreen;
+}
+.button_container{
+    display:flex;
+    align-items:center;
+    justify-content: left;
 }
 .table_style {
     height: 300px;

@@ -5,30 +5,52 @@
 {% endblock title %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/student/student_details.css' %}"/>
+<p id = "Maths" style="display:none">{{Maths}}</p>
+<p id = "Physics" style="display:none">{{Physics}}</p>
+<p id = "Chemistry" style="display:none">{{Chemistry}}</p>
+<p id = "Computer" style="display:none">{{Computer}}</p>
+<p id = "English" style="display:none">{{English}}</p>
+<p id = "Hindi" style="display:none">{{Hindi}}</p>
+<p id = "Total_marks_obtained" style="display:none">{{Total_marks_obtained}}</p>
+<p id = "Total_Marks" style="display:none">{{Total_Marks}}</p>
+<p id = "Percentage" style="display:none">{{Percentage}}</p>
+<p id = "passing_percentage" style="display:none">{{passing_percentage}}</p>
+<p id = "pass_fail" style="display:none">{{pass_fail}}</p>
 <div class="container pt-5">
-    <div class="card" style="width: 29rem;">
-        <div class="card-body">
-          <h5 class="card-title"><a href="{% url 'student' %}" class="btn btn-warning"><i class="fa-solid fa-arrow-left"></i></a> Student's Details</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{Student_Name}}</h6>
-          <div class="row">
-            <p class="card-text">Name : {{Student_Name}}</p>
+    <div class="row mx-auto">
+        <div class="col-sm-12 col-md-12 col-lg-4 my-2">
+            <div class="card-deck">
+                <div class="card mb-4" style="width: 22rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="{% url 'student' %}" class="btn btn-warning"><i class="fa-solid fa-arrow-left"></i></a> Student's Details</h5>
+                      <h6 class="card-subtitle mb-2 text-muted" id="student_name">{{Student_Name}}</h6>
+                      <div class="row">
+                        <p class="card-text">Name : {{Student_Name}}</p>
+                    </div>
+                    <div class="row">
+                        <p class="card-text">Roll no : {{roll_no}}</p>
+                    </div>
+                    <div class="row">
+                        <p class="card-text">Mobile : {{mobile}}</p>
+                    </div>
+                    <div class="row">
+                        <p class="card-text">Email : {{email}}</p>
+                    </div>
+                    <div class="row">
+                        <p class="card-text">Father's name : {{Father_Name}}</p>
+                    </div>
+                      <a href="#" class="btn btn-primary my-1" id="show_marks">Marks</a>
+                      <a href="#" class="btn btn-primary my-1">attendence</a>
+                    </div>
+                  </div>
+            </div>
         </div>
-        <div class="row">
-            <p class="card-text">Roll no : {{roll_no}}</p>
+        <div class="col-sm-12 col-md-12 col-lg-4 my-2">
+            <div id="marks_card">
+                   
+            </div>
         </div>
-        <div class="row">
-            <p class="card-text">Mobile : {{mobile}}</p>
-        </div>
-        <div class="row">
-            <p class="card-text">Email : {{email}}</p>
-        </div>
-        <div class="row">
-            <p class="card-text">Father's name : {{Father_Name}}</p>
-        </div>
-          <a href="#" class="btn btn-primary my-1">Marks</a>
-          <a href="#" class="btn btn-primary my-1">attendence</a>
-        </div>
-      </div>
+    </div>
 </div>
 <script src="{% static 'js/student/student_details.js' %}"></script>
 {% endblock content %}

@@ -127,7 +127,7 @@ function read_data(){
                 $('#student_info_table').append(
                     `
                     <tr ondblclick="open_student_detail('${data.context[i].student_ID}')">
-                          <td>${i}</td>
+                          <td>${i+1}</td>
                           <td scope="row" style="display:none;">${data.context[i].student_ID}</td>
                           <td>${data.context[i].Student_Name}</td>
                           <td>${data.context[i].Father_Name}</td>
