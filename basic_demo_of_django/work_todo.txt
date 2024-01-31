@@ -1,0 +1,1 @@
+Come back to django_dynamic_url and implement user types , register , login and show data based on the type of user that is currently logged in

@@ -10,7 +10,8 @@ https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
 import os
 
 from django.core.wsgi import get_wsgi_application
-
+from decouple import config
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_dynamic_url.settings')
-
+config('EMAIL_HOST_USER')
+config('EMAIL_HOST_PASSWORD')
 application = get_wsgi_application()

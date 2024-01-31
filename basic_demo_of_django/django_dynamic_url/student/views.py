@@ -1,4 +1,5 @@
 from django.core.mail import EmailMessage
+from django.db import connection
 import os
 from django.http import JsonResponse
 from django.shortcuts import render,redirect
@@ -111,6 +112,7 @@ def student_details_page(request,ID):
         try:
             Student_Marks = Marks.objects.get(Student_ID = ID)
             marks_settings = MarksSettings.objects.first()
+            print(connection.queries)
             passing_percentage = marks_settings.passing_percentage
             Total_marks_per_subject = marks_settings.Total_marks_per_subject
             Total_Marks = Total_marks_per_subject*6
@@ -134,7 +136,6 @@ def student_details_page(request,ID):
                     'passing_percentage' : passing_percentage,
                     'pass_fail' : Student_Marks.pass_fail,
             }
-            print(data)
             return render(request,'student/student_details.html',data)
         except Marks.DoesNotExist:
             print("marks does not exist")
@@ -187,7 +188,8 @@ def send_email(request):
 
             # Send the email
             email.send()
-
+            print(email_addr)
+            email_addr=""
             # Delete the temporary Excel file after sending the email
             os.remove(excel_file_path)
 
