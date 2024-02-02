@@ -29,6 +29,8 @@ $('body').ready(function(){
     Percentage : $(`#Percentage`).text(),
     passing_percentage : $(`#passing_percentage`).text(),
     pass_fail : $(`#pass_fail`).text(),
+    date : $('#date').text(),
+    no_of_days_present : $('#no_of_days_present').text(),
     }
     data_  = data
 })
@@ -108,6 +110,45 @@ $('body').on('click','#hide_marks',function(){
     $('#marks_card').empty()
 })
 
+$('body').on('click','#show_attendance',function(){
+    show_attendance();
+})
+function show_attendance(){
+    if (data_.date == "" && data_.no_of_days_present == ""){
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Attedance does not exist!"
+          });
+    }
+    else{
+        create_attendance_card(data_)
+    }
+}
+function create_attendance_card(attendance){
+    $('#attendance_card').append(
+        `
+        <div class="card-deck">
+        <div class="card mb-4" style="width: 22rem;">
+            <div class="card-body">
+              <h5 class="card-title">${attendance.student_name}'s attendance</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Marks Detail</h6>
+              <div class="row">
+                <p class="card-text">Maths : ${attendance.date}</p>
+            </div>
+            <div class="row">
+                <p class="card-text">Physics : ${attendance.no_of_days_present}</p>
+            </div>
+              <button class="btn btn-primary my-1" id="hide_attendance">Hide</button>
+            </div>
+          </div>
+    </div>
+        `
+    )
+}
+$('body').on('click','#hide_attendance',function(){
+    $('#attendance_card').empty()
+})
 /* Send email using SMTP from django using Gmail account */
 $('body').on('click','#send_marks',function(){
     send_marksSMTP(data_.email, data_.student_name, data_.Maths, data_.Physics, data_.Chemistry, data_.Computer, data_.English, data_.Total_marks_obtained, data_.Total_Marks, data_.Percentage, data_.passing_percentage, data_.pass_fail)

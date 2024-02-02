@@ -7,7 +7,7 @@ from django.urls import reverse
 import json
 from student.models import *
 from marks.models import *
-
+from attendence.models import *
 from django.core.mail import send_mail
 import pandas as pd
 # Create your views here.
@@ -110,6 +110,7 @@ def student_details_page(request,ID):
     if ID:
         Student_DB_instance = Student.objects.get(pk=ID)
         try:
+            Student_Attendance = Attendance.objects.get(student_ID = ID)
             Student_Marks = Marks.objects.get(Student_ID = ID)
             marks_settings = MarksSettings.objects.first()
             print(connection.queries)
@@ -135,6 +136,9 @@ def student_details_page(request,ID):
                     'Percentage' : Student_Marks.Percentage,
                     'passing_percentage' : passing_percentage,
                     'pass_fail' : Student_Marks.pass_fail,
+
+                    'date' : Student_Attendance.date,
+                    'no_of_days_present' : Student_Attendance.no_of_days_present,
             }
             return render(request,'student/student_details.html',data)
         except Marks.DoesNotExist:
@@ -149,7 +153,18 @@ def student_details_page(request,ID):
                     'email' : Student_DB_instance.email,
             }
             return render(request,'student/student_details.html',data)
-
+        except Attendance.DoesNotExist:
+            print("marks does not exist")
+            Student_DB_instance = Student.objects.get(pk=ID)
+            data = {
+                    'student_ID' : Student_DB_instance.student_ID,
+                    'Student_Name' : Student_DB_instance.Student_Name,
+                    'Father_Name' : Student_DB_instance.Father_Name, 
+                    'roll_no' : Student_DB_instance.roll_no, 
+                    'mobile' : Student_DB_instance.mobile,
+                    'email' : Student_DB_instance.email,
+            }
+            return render(request,'student/student_details.html',data)
 #send mail using smtp
 def send_email(request):
     is_ajax = request.headers.get("X-Requested-With")=="XMLHttpRequest"
