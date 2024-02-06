@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'student',
     'marks',
     'attendence',
+
+    #allow admin to export db in excel from admin panel
+    'import_export',
 ]
 
 MIDDLEWARE = [
