@@ -1,0 +1,20 @@
+{% extends "base/registration_base.html" %}
+{% load static %}
+{% block content %}
+<script>
+    var login_user_url = '{% url "loginUser" %}';
+    var main = '{% url "main" %}';
+</script>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">username</label>
+      <input type="text" class="form-control" id="username" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="pass">
+      <a href="{% url "register" %}">Don't have an account?</a>
+      <a href="#">Forgot password?</a>
+    </div>
+    <button class="btn btn-primary" id='login'>Login</button>
+  <script src="{% static 'js/auth_user/login.js' %}"></script>
+{% endblock content %}

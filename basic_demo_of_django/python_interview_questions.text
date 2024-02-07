@@ -1,0 +1,54 @@
+Return the last date of the month number_of_months from a provided datetime.date.
+To find the end of the month for dt.month, use number_of_months = 0. in python
+
+Return a set of the intersection of all the lists provided in *args for every possible combination of lists from the lists provided in *args. Include the lists considered in each result when singles=True is passed to the function.
+
+Ingest a dictionary and returns a dictionary such that key: value becomes the value: key if the key is a string and is unchanged if the key is anything other than a string.
+
+return the smallest list of items to remove from the list such that the result is a palindromic list of items 
+def create_palindrome(items):
+    return
+
+Return a list of numbers where each element is the number if the number is not a fibonacci number and the square of the number if the number is a fibonacci number for a given range of numbers, inclusive
+
+Return the total value of the principal that grows at the compounded rate (per annum) for the given term in years.
+
+ROT13 is a simple letter substitution cipher that replaces a letter with the 13th letter after it in the latin alphabet. Also replace numbers with the 5th number after it.
+For example:
+rot13("Lorem ipsum dolor sit amet") = "Yberz vcfhz qbybe fvg nzrg"
+rot13("123") = "678"
+
+Return a string that has all the words in reverse order; "hello world!" becomes "world! hello".
+
+Return a list of all palindromes in a list of words provided as an argument to the function.
+def palindromes_in_word_list(word_list):
+    return
+    
+Return a list of all word and numeric palindromes in a list of words provided as an argument to the function.
+def palindromes_in_list(word_list):
+    return
+
+Return a dictionary with integer keys and values of lists that contain every word whose length is equal to that of key.
+def wordcount(paragraph):
+    return
+
+Generates n files, with each file containing rows by filtering on all specific columns defined in the function argument filters.
+def split_csv(file, filters: list):
+    return
+    
+Return the first date of the month number_of_months from a provided datetime.date.
+To find the first of the month for dt.month, use number_of_months = 0.
+def fomonth(dt, number_of_months):
+    return
+    
+syllabus
+Literals, Operators, and Delimiters
+Expressions
+Simple Statements
+Compound statements - if, while, for, try, with, match
+Data Structures - Lists, Tuples, Dictionaries, Sets
+Modules
+datetime
+json
+random
+os
