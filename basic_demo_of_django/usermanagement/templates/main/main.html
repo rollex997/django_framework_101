@@ -4,9 +4,14 @@
 {{title}}
 {% endblock title %}
 {% block content %}
+<script>
+    var logout_url = '{% url "logout" %}'
+    var login_url = '{% url "login" %}'
+</script>
 <h1>this is {{title}} page</h1>
 <h3>Logged in user</h3>
 <p>user id : {{user.id}}</p>
 <p>user id : {{user.username}}</p>
 <p>user id : {{user.email}}</p>
+<script src="{% static 'js/main/main.js' %}"></script>
 {% endblock content %}

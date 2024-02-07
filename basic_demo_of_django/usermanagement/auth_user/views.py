@@ -4,6 +4,7 @@ import json
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 # Create your views here.
 def register(request):
     return render(request,'auth_user/register.html')
@@ -44,4 +45,9 @@ def loginUser(request):
                 return JsonResponse({'status': 400}, status=400)
             
 def logout(request):
-    pass
+    is_ajax = request.headers.get("X-Requested-With")=="XMLHttpRequest"
+    if is_ajax:
+        if request.method=='POST':
+            auth_logout(request)
+            return JsonResponse({'status':200},status=200)
+    
