@@ -52,3 +52,12 @@ fetch (
     }
 })
 }
+$('body').on('click','#forgotpass',function(){
+    var username = $('#username').val()
+    if(username == ""){
+        alert('Username empty')
+    }
+    else{
+        window.location.href='changePasswordPage' + `/${username}`
+    }
+})
