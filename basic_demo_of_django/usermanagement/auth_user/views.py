@@ -1,5 +1,6 @@
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.urls import reverse
 import json
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -29,6 +30,8 @@ def registerUser(request):
             return JsonResponse({'status':400},status=400)
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect(reverse('main'))
     return render(request,'auth_user/login.html')
 def loginUser(request):
     is_ajax = request.headers.get("X-Requested-With") == "XMLHttpRequest"
