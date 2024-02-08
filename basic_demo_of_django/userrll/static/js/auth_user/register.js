@@ -50,6 +50,7 @@ function validate(username,email, pass1, pass2){
                 password2 : pass2
             }
             get_form_val(data)
+            send_form_data_email(data)
         }
     }
 }
@@ -65,13 +66,29 @@ function get_form_val(data){
         body:JSON.stringify({payload:data})
     }).then(response=>response.json())
     .then(data=>{
-        console.log(data)
         if (data.status==200){
             alert("check your mail")
-            window.location.href = login;
         }
         if(data.status==599){
             alert("user already exist")
+        }
+    })
+}
+function send_form_data_email(data){
+    fetch(
+        email_otp_url,{
+            method:'POST',
+            credentials:'same-origin',
+            headers:{
+                'X-Requested-With':'XMLHttpRequest',
+                'X-CSRFToken':getCookie("csrftoken")
+            },
+            body:JSON.stringify({payload:data})
+        }
+    ).then(response=>response.json())
+    .then(data=>{
+        if (data.status==200){
+            window.location.href=verifyotp_url
         }
     })
 }

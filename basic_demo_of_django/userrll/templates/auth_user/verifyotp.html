@@ -1,0 +1,15 @@
+{% extends "base/registration_base.html" %}
+{% load static %}
+{% block content %}
+<script>
+    var verifyOTPProcess_url = '{% url "verifyOTPProcess" %}';
+    var login_url = '{% url "login" %}';
+</script>
+<p style="display:block">{{data.otp}}</p>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Verify OTP</label>
+        <input type="text" class="form-control" id="otp" aria-describedby="emailHelp">
+    </div>
+    <button class="btn btn-primary" id="submit">Verify</button>   
+  <script src="{% static 'js/auth_user/verifyotp.js' %}"></script>
+{% endblock content %}
