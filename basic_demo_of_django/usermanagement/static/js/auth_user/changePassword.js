@@ -53,10 +53,13 @@ function change_pass(pass1,pass2,passOLD){
         console.log(data)
         if(data.status==200){
             alert("password change successfully!!!");
-            window.location.href=login_url
+            window.location.href='/'
         }
         else if(data.status==404){
             alter("user not found")
+        }
+        else if(data.status == 401){
+            alter("Failed to authenticate with new password")
         }
     })
 }

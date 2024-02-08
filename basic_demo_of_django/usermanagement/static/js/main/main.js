@@ -32,3 +32,12 @@ function logout_user(){
         }
     })
 }
+$('body').on('click','#change_pass',function(){
+  var username = $('#username').text()
+  if(username == ""){
+      alert('Username empty')
+  }
+  else{
+      window.location.href='auth/changePasswordPage' + `/${username}`
+  }
+})

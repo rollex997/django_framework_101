@@ -12,6 +12,8 @@
 <h3>Logged in user</h3>
 <p>user id : {{user.id}}</p>
 <p>user id : {{user.username}}</p>
+<p id="username" style="display:none">{{user.username}}</p>
 <p>user id : {{user.email}}</p>
+<button class="btn btn-primary" id="change_pass">Change pass</button>
 <script src="{% static 'js/main/main.js' %}"></script>
 {% endblock content %}

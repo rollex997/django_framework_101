@@ -54,36 +54,33 @@ def logout(request):
             auth_logout(request)
             return JsonResponse({'status':200},status=200)
 def changePasswordPage(request,username):
-        data = {
-            'username':username
-        }
-        if request.user.is_authenticated:
-            return redirect(reverse('main'))
-        return render(request,'auth_user/forgotPassword.html',data)
-def changePassword(request):
-    is_ajax = request.headers.get("X-Requested-With")=="XMLHttpRequest"
-    if is_ajax:
-        if request.method=='POST':
-            data = json.load(request)
-            password = data.get('payload')
-            print(f"username : {password['username']}")
-            print(f"passOLD : {password['passOLD']}")
-            print(f"pass1 : {password['pass1']}")
-            print(f"pass2 : {password['pass2']}")
-            user = authenticate(username=password['username'],password=password['passOLD'])
-            if user:
-                user.set_password(password['pass1'])
-                user.save()
-                return JsonResponse({'status':200},status=200)
+            if request.user.is_authenticated:
+                data = {
+                    'username':username
+                }
+                print(data)
+                return render(request,'auth_user/forgotPassword.html',data)
             else:
-                return JsonResponse({'status':404},status=404)
-
-# user = authenticate(username=username, password=old_password)
-#         if user:
-#             user.set_password(new_password)
-#             user.save()
-#             return JsonResponse({'message': 'Password changed successfully'})
-#         else:
-#             return JsonResponse({'error': 'Invalid username or password'}, status=400)
-#     else:
-#         return JsonResponse({'error': 'Only POST requests are allowed'}, status=405)
+                 return redirect(reverse('login'))
+def changePassword(request):
+        is_ajax = request.headers.get("X-Requested-With")=="XMLHttpRequest"
+        if is_ajax:
+            if request.method=='POST':
+                data = json.load(request)
+                password = data.get('payload')
+                print(f"username : {password['username']}")
+                print(f"passOLD : {password['passOLD']}")
+                print(f"pass1 : {password['pass1']}")
+                print(f"pass2 : {password['pass2']}")
+                user = authenticate(username=password['username'],password=password['passOLD'])
+                if user:
+                    user.set_password(password['pass1'])
+                    user.save()
+                    user = authenticate(username=password['username'],password=password['pass1'])
+                    if user:
+                        auth_login(request, user)  # Ensure user remains logged in with new password
+                        return JsonResponse({'status': 200}, status=200)
+                    else:
+                        return JsonResponse({'status': 401}, status=401)
+                else:
+                    return JsonResponse({'status':404},status=404)
