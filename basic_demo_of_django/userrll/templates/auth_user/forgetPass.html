@@ -1,0 +1,19 @@
+{% extends "base/registration_base.html" %}
+{% load static %}
+{% block content %}
+<script>
+    var verify_email = '{% url "verify_email" %}'
+    var verifyOTP_url = '{% url "verifyOTPForgotPassword" %}'
+    var login_url = '{% url "login" %}'
+</script>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">New password</label>
+      <input type="password" class="form-control" id="pass1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+      <input type="password" class="form-control" id="pass2">
+    </div>
+    <button class="btn btn-primary" id='submit'>Submit</button>
+  <script src="{% static 'js/auth_user/forgotpass.js' %}"></script>
+{% endblock content %}

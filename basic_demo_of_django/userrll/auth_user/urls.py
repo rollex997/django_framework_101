@@ -13,4 +13,10 @@ urlpatterns = [
     path('logout',logout,name="logout"),
     path('changePassPage/<username>',changePassPage,name="changePassPage"),
     path('changepass',changepass,name="changepass"),
+
+    path('forgetPasswordPage/<username>',forgetPasswordPage,name="forgetPasswordPage"),
+    path('verify_email',verify_email,name="verify_email"),
+    path('verify_email_otp_verify',verify_email_otp_verify,name="verify_email_otp_verify"),
+    path('verifyOTPForgotPassword',verifyOTPForgotPassword,name="verifyOTPForgotPassword"),
+    
 ]
