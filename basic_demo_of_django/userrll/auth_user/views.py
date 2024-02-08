@@ -8,7 +8,6 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 import random
-from django.middleware.csrf import CsrfViewMiddleware
 # Create your views here.
 otp = []
 user_data = {}
