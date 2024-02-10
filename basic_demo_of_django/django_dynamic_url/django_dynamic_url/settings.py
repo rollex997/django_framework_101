@@ -47,6 +47,9 @@ INSTALLED_APPS = [
 
     #allow admin to export db in excel from admin panel
     'import_export',
+
+    #user auth app
+    'auth_user',
 ]
 
 MIDDLEWARE = [

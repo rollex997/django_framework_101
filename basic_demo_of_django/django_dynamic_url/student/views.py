@@ -1,5 +1,4 @@
 from django.core.mail import EmailMessage
-from django.db import connection
 import os
 from django.http import JsonResponse
 from django.shortcuts import render,redirect
@@ -10,6 +9,13 @@ from marks.models import *
 from attendence.models import *
 from django.core.mail import send_mail
 import pandas as pd
+
+#view sql queries
+from django.db import connection
+from pygments import highlight
+from pygments.formatters import TerminalFormatter
+from pygments.lexers import PostgresLexer
+from sqlparse import format
 # Create your views here.
 def student(request):
     title_ = 'Student'
@@ -113,7 +119,8 @@ def student_details_page(request,ID):
             Student_Attendance = Attendance.objects.get(student_ID = ID)
             Student_Marks = Marks.objects.get(Student_ID = ID)
             marks_settings = MarksSettings.objects.first()
-            print(connection.queries)
+            sql_query = connection.queries
+            print(sql_query)
             passing_percentage = marks_settings.passing_percentage
             Total_marks_per_subject = marks_settings.Total_marks_per_subject
             Total_Marks = Total_marks_per_subject*6
@@ -192,7 +199,7 @@ def send_email(request):
             excel_file_path = f"/home/aditya/github/django_training/basic_demo_of_django/django_dynamic_url/static/js/student/{email_data['student_name']}_marks.xlsx"
             df.to_excel(excel_file_path)
             
-             # Prepare email
+            # Prepare email
             subject = f"{email_data['student_name']}'s Marks are sent from Django"
             message = "Please find attached the marks Excel file."
             recipient_list = [email_addr]

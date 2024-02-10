@@ -7,6 +7,7 @@
             {% endblock title %}
         </title>
         <script src="{% static 'js/jquery/jquery.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.0"></script>
         <script src="https://kit.fontawesome.com/227d2d7f20.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="{% static 'css/bootstrap/bootstrap.css' %}" rel="stylesheet"/>
@@ -37,6 +38,9 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{% url "attendance" %}">Attendance</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="logout">Logout</a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -45,6 +49,11 @@
         
         {% endblock content %}
     </body>
+    <script>
+      var logoutUser = '{% url "logoutUser" %}'
+      var loginPage = '{% url "loginPage" %}'
+    </script>
+    <script src="{% static 'js/auth_user/logout.js' %}"></script>
     <script src="{% static 'js/bootstrap/bootstrap.bundle.js' %}"></script>
     <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
     <script src="{% static 'js/bootstrap/bootstrap.esm.js' %}"></script>

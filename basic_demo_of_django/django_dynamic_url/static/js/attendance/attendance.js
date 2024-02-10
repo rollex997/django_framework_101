@@ -155,16 +155,25 @@ function insert_attendance(){
             body:JSON.stringify({'payload':data})
         }).then(response=>response.json())
         .then(data=>{
+          if(data.status==200){
+            read_attandance()
             Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Marks settings has been saved",
-                showConfirmButton: false,
-                timer: 1500
-              },{
-                
-              });
-              read_attandance()
+              position: "top-end",
+              icon: "success",
+              title: "Marks settings has been saved",
+              showConfirmButton: false,
+              timer: 1500
+            },{
+              
+            });
+          }
+          else if(data.status==500){
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "No Student Assigned to the attendance",
+            });
+          }
         })
 }
 

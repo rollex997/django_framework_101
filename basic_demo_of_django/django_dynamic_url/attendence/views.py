@@ -17,24 +17,27 @@ def insert_attendance(request):
         if request.method=='POST':
             data = json.load(request)
             inserted_attendance = data.get('payload')
-            Student_instance = Student.objects.get(pk=inserted_attendance['student_ID'])
-            # Assuming your date string is in a different format
-            date_string = inserted_attendance['date_selected']
-            
-            # Convert the date string to a datetime object
-            date_object = datetime.strptime(date_string, "%Y-%m-%d")
-            
-            # Format the datetime object in the "YYYY-MM-DD" format
-            formatted_date = date_object.strftime("%Y-%m-%d")
-            Attendance.objects.create(
-                date = formatted_date,
-                no_of_days_present = inserted_attendance['no_of_days_present'],
-                student_ID = Student_instance,
-                Student_Name = inserted_attendance['Student_Name'],
-            )
-            return JsonResponse({'status':'Data inserted success!!'},status=200)
+            try:
+                Student_instance = Student.objects.get(pk=inserted_attendance['student_ID'])
+                # Assuming your date string is in a different format
+                date_string = inserted_attendance['date_selected']
+                
+                # Convert the date string to a datetime object
+                date_object = datetime.strptime(date_string, "%Y-%m-%d")
+                
+                # Format the datetime object in the "YYYY-MM-DD" format
+                formatted_date = date_object.strftime("%Y-%m-%d")
+                Attendance.objects.create(
+                    date = formatted_date,
+                    no_of_days_present = inserted_attendance['no_of_days_present'],
+                    student_ID = Student_instance,
+                    Student_Name = inserted_attendance['Student_Name'],
+                )
+                return JsonResponse({'status':200},status=200)
+            except:
+                return JsonResponse({'status':500},status=500)
         return JsonResponse({'status':'Invalid request'},status=400)
-    return JsonResponse({'status':'ajax error'},status=600)
+    return JsonResponse({'status':'ajax error'},status=599)
 def Read_attendance(request):
     is_ajax = request.headers.get("X-Requested-With")=="XMLHttpRequest"
     if is_ajax:
