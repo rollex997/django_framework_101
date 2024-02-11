@@ -4,7 +4,8 @@ import json
 from marks.models import *
 from student.models import *
 from django.db import transaction
-from django.db.utils import OperationalError
+from django.db.utils import OperationalError, IntegrityError
+from django.db.models import F, Q
 # Create your views here.
 def marks(request):
     title_ = 'marks'
@@ -164,20 +165,22 @@ def recalculate_pass_fail(request):
     if is_ajax:
         if request.method=='POST':
             try:
-                marks_settings = MarksSettings.objects.first()
-                passing_percentage = marks_settings.passing_percentage
-                marks = Marks.objects.all()
-
                 with transaction.atomic():
-                # with transaction.atomic(isolation='read committed'):
-                    for mark in marks:
-                        percentage_obtained = mark.Percentage
-                        mark.pass_fail = passing_percentage <= percentage_obtained
-                        mark.save()
+                    marks_settings = MarksSettings.objects.first()
+                    passing_percentage = marks_settings.passing_percentage
+                    marks = Marks.objects.all()
+                    # with transaction.atomic(isolation='read committed'):
+                    # for mark in marks:
+                    #     percentage_obtained = mark.Percentage
+                    #     mark.pass_fail = passing_percentage <= percentage_obtained
+                    #     mark.save()
+                    Marks.objects.update(
+                    pass_fail=Q(Percentage__gte=(passing_percentage))
+                )
 
                 return JsonResponse({'status': 'Success'}, status=200)
 
-            except OperationalError as e:
+            except IntegrityError as e:
                 # Log the exception or handle it as needed
                 return JsonResponse({'status': 'Error', 'message': str(e)}, status=500)
         else:
