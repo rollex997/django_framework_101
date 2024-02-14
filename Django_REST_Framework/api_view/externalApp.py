@@ -20,49 +20,37 @@ import json
 
 '''update_student complete update'''
 # data={
-#     'Student_ID':'2',
-#     'name':'B',
-#     'roll' : 800,
-#     'city':'Kochi',
+#     'name':'Barbatos',
+#     'roll' : 117,
+#     'city':'Rajasthan',
 # }
 # json_data = json.dumps(data)
-# URL = 'http://127.0.0.1:8000/update_student'
+# URL = 'http://127.0.0.1:8000/update_student/3'
 # headers = {'Content-Type': 'application/json'}
-# request_ = requests.post(url=URL,data=json_data,headers=headers)
+# request_ = requests.put(url=URL,data=json_data,headers=headers)
 # print(request_.text)
 '''update_student partial update'''
 # data={
-#     'Student_ID':'2',
-#     'name':'B',
-#     'city':'karnataka'
+#     'city':'Lucknow',
 # }
 # json_data = json.dumps(data)
-# URL = 'http://127.0.0.1:8000/update_student'
+# URL = 'http://127.0.0.1:8000/update_student/3'
 # headers = {'Content-Type': 'application/json'}
-# request_ = requests.post(url=URL,data=json_data,headers=headers)
+# request_ = requests.put(url=URL,data=json_data,headers=headers)
 # print(request_.text)
 
 '''get one student record'''
-# data={
-#     'Student_ID':'2'
-# }
-# json_data = json.dumps(data)
-# URL = 'http://127.0.0.1:8000/get_one_student'
-# headers = {'Content-Type': 'application/json'}
-# request_ = requests.post(url=URL,data=json_data,headers=headers)
+# URL = 'http://127.0.0.1:8000/get_one_student/3'
+# request_ = requests.get(url=URL)
 # print(request_.text)
 
 '''get all data'''
 # URL = 'http://127.0.0.1:8000/get_all_student'
-# request_ = requests.post(url=URL)
+# request_ = requests.get(url=URL)
 # print(request_.text)
 
 '''delete student data from DB'''
-# data={
-#     'Student_ID' : 3
-# }
-# json_data = json.dumps(data)
-# URL = 'http://127.0.0.1:8000/delete_student'
+# URL = 'http://127.0.0.1:8000/delete_student/3'
 # headers = {'Content-Type':'application/json'}
-# request_ = requests.post(url=URL,data=json_data,headers=headers)
+# request_ = requests.delete(url=URL,headers=headers)
 # print(request_.text)
