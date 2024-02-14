@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from rest_framework.parsers import JSONParser
 from api.models import *
 from api.serializers import *
+'''create data'''
 @csrf_exempt
 def create_student(request):
     if request.method=='POST':
@@ -17,6 +18,7 @@ def create_student(request):
             return JsonResponse({'status':'create data success!!!'})
         else:
             return JsonResponse({'status':serializer.errors})
+'''update data'''
 @csrf_exempt
 def update_student(request):
     if request.method=='POST':
@@ -31,12 +33,14 @@ def update_student(request):
                 return JsonResponse({'status':'student updated successfully'})
         except Student.DoesNotExist:
             return JsonResponse({'status':'student does not exist'})
+'''get all data'''
 @csrf_exempt
 def get_all_student(request):
     if request.method=='POST':
         student=Student.objects.all()
         serializer = StudentSerializers(student,many=True)
         return JsonResponse({'data':serializer.data})
+'''get one data'''
 @csrf_exempt
 def get_one_student(request):
     if request.method=='POST':
@@ -49,6 +53,7 @@ def get_one_student(request):
            return JsonResponse({'data':serializers.data})
         except Student.DoesNotExist:
             return JsonResponse({'status':'student does not exist'})
+'''delete data'''
 @csrf_exempt
 def delete_student(request):
     if request.method=='POST':
