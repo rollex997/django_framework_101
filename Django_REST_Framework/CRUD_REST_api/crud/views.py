@@ -36,6 +36,7 @@ def create_student(request):
         json_data = request.body
         stream = io.BytesIO(json_data)
         python_data = JSONParser().parse(stream)
+        print(python_data)
         serializers = StudentSerializers_create(data=python_data)
         if serializers.is_valid():
             serializers.save()
@@ -43,7 +44,7 @@ def create_student(request):
         else:
             return JsonResponse({'status':serializers.errors})
 
-# Update your student record
+# Update your student record (complete and partial update supported)
 @csrf_exempt
 def update_student(request):
     if request.method=='POST':
