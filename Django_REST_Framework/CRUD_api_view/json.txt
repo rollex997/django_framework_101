@@ -1,0 +1,12 @@
+# partial update
+{
+"Student_ID":1,
+"name":"Rollex"
+}
+# complete update
+{
+"Student_ID":1,
+"name":"Rollex",
+"roll":997,
+"city":"Lucknow"
+}
