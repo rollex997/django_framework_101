@@ -56,11 +56,11 @@ import json
 # print(request_.text)
 
 '''delete student data from DB'''
-data={
-    'ID' : 3
-}
-json_data = json.dumps(data)
-URL = 'http://127.0.0.1:8000/student_api'
-headers = {'Content-Type':'application/json'}
-request_ = requests.delete(url=URL,data=json_data,headers=headers)
-print(request_.text)
+# data={
+#     'ID' : 3
+# }
+# json_data = json.dumps(data)
+# URL = 'http://127.0.0.1:8000/student_api'
+# headers = {'Content-Type':'application/json'}
+# request_ = requests.delete(url=URL,data=json_data,headers=headers)
+# print(request_.text)
