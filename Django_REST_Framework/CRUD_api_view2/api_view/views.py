@@ -1,10 +1,15 @@
 from api_view.serializers import *
 from api_view.models import *
 from rest_framework.response import Response
-from rest_framework.decorators import *
 
+#for auth, permission and rest api
+from rest_framework.decorators import *
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 # create / update data     
 @api_view(['POST', 'PUT'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def create_update_data(request):
     if request.method == 'POST':
         serializer = StudentSerializers(data=request.data)
@@ -29,6 +34,8 @@ def create_update_data(request):
 
 #Read one / read all data
 @api_view(['GET','POST'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def read_all_one_data(request):
     if request.method=='POST':
         ID = request.data.get('ID')
@@ -45,6 +52,8 @@ def read_all_one_data(request):
 
 # delete data 
 @api_view(['POST'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def delete_data(request):
     if request.method=='POST':
         ID = request.data.get('ID')
