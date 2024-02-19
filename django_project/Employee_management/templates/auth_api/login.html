@@ -1,0 +1,50 @@
+{% extends "base/base_auth.html" %}
+{% load static %}
+{% block title %}{{title}}{% endblock title %}
+{% block content %}
+<script>
+    var loginUser = '{% url "loginUser" %}';
+    var homepage = '{% url "homepage" %}';
+</script>
+<div class="container">
+    <div class="container mx-auto mt-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-sm-10">
+                      <h3 class="mx-auto">Login</h3>
+                    </div>
+                  </div>
+                <div class="row mb-3">
+                    <label for="username" class="col-sm-2 col-form-label">User name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="username">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="password">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-sm-10">
+                      <a href="{% url "register" %}">Don't have an account?</a>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-sm-10">
+                      <a class="text-primary" id="reset_password_btn">Forgot password?</a>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-sm-10">
+                      <button class="btn btn-success" id="login">Login</button>
+                    </div>
+                  </div>
+            </div>
+          </div>
+    </div>
+</div>
+<script src="{% static 'js/auth_api/login.js' %}"></script>
+{% endblock content %}

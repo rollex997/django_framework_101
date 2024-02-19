@@ -1,0 +1,87 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+{{title}}
+{% endblock title %}
+{% block content %}
+<script>
+    var empWorkCreate = '{% url "empWorkCreate" %}';
+    var empWorkRead = '{% url "empWorkRead" %}';
+    var empEdit = '{% url "empEdit" %}';
+    var empdelete = '{% url "empdelete" %}';
+</script>
+<link href="{% static '/css/home/home.css' %}" rel="stylesheet"/>
+<div class="container">
+    <div class="row" id="home_view">
+    <div class="col-12">
+            <h3>This is {{title_home}} page <i class="fa-solid fa-house"></i></h3>
+    </div>
+    <div class="col-12">
+        <h3>{{user_profile.user}} is a {{user_profile.phone}}</h3>
+    </div>
+    </div>
+
+    <div class="row" id="employee_view">
+        <div class="col-12">
+                <h3>This is {{title_employee}} work experience <i class="fa-solid fa-person"></i></h3>
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="mb-3">
+                        <label for="company_name" class="form-label">Company Name</label>
+                        <input type="text" class="form-control" id="company_name" placeholder="company name">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="mb-3">
+                        <label for="role" class="form-label">Role</label>
+                        <input type="text" class="form-control" id="role" placeholder="Role">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="mb-3">
+                        <label for="date_of_joining" class="form-label">Date of joining</label>
+                        <input type="date" class="form-control" id="date_of_joining" placeholder="Date of Joining">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="mb-3">
+                        <label for="last_date" class="form-label">Last Date</label>
+                        <input type="date" class="form-control" id="last_date" placeholder="Last Date">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="mb-3">
+                        <button class="btn btn-success" id="save">Save</button>
+                        <button class="btn btn-danger" id="cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="table-responsive student_table_style" id="employee_experience_table">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="row" style="display:none">ID</th>
+                        <th scope="col">Company Name</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Date of joining</th>
+                        <th scope="col">Last Date</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table_body">
+
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        </div>
+</div>
+<script src="{% static 'js/home/homepage.js' %}"></script>
+{% endblock content %}
