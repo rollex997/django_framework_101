@@ -1,0 +1,29 @@
+{% extends "base/base_auth.html" %}
+{% load static %}
+{% block title %}{{title}}{% endblock title %}
+{% block content %}
+<script>
+var verify_email_otp_verify = '{% url "verify_email_otp_verify" %}';
+</script>
+<div class="container">
+    <div class="container mx-auto mt-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-3">
+                    <label for="otp" class="col-sm-2 col-form-label">OTP</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="otp">
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-sm-10">
+                      <button class="btn btn-dark" id="verify">verify</button>
+                    </div>
+                  </div>
+            </div>
+          </div>
+    </div>
+</div>
+<script src="{% static 'js/auth_api/verify_email_page.js' %}"></script>
+{% endblock content %}
