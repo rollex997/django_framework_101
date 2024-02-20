@@ -112,8 +112,11 @@ def loginUser(request):
 def logoutUser(request):
    if request.user.is_authenticated:
      if request.method=='POST':
-          auth_logout(request)
-          return Response({'status':200},status=200)
+          try:
+              auth_logout(request)
+              return Response({'status':200},status=200)
+          except:
+              return Response({'status':400},status=400)
 '''
 {
 "username":"aastha",
