@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Djano REST api",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
