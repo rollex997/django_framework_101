@@ -1,0 +1,29 @@
+meta {
+  name: register User
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://127.0.0.1:8000/
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+    "email":"aryan268859@gmail.com",
+    "name":"aastha",
+    "password":"ilovetoneystark",
+    "password2":"ilovetoneystark",
+    "tc":"True"
+  }
+}
+
+body:multipart-form {
+  : 
+}

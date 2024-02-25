@@ -1,0 +1,22 @@
+meta {
+  name: login user
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://127.0.0.1:8000/UserLoginView/
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+    "email":"aryan268859@gmail.com",
+    "password":"ilovetoneystark"
+  }
+}

@@ -1,0 +1,21 @@
+meta {
+  name: sendResetPassLink
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://127.0.0.1:8000/SendPasswordResetEmailView/
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+    "email":"aryan268859@gmail.com"
+  }
+}
