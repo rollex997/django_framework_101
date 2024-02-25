@@ -7,7 +7,8 @@ from auth_jwt.models import CustomUser
 from django.utils.encoding import smart_str, force_bytes,DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-
+from django.conf import settings
+from django.core.mail import EmailMessage
 '''This serilaizer is responsible for registering the user'''
 class RegisterCustomUserSerializers(serializers.ModelSerializer):
     #This will make sure that password 2 input field is of type password 
@@ -103,6 +104,13 @@ class SendPasswordResetEmailSerializer(serializers.Serializer):
             link = f'http://127.0.0.1:8000/reset_password/{uid}/{token}/'
             print(f"generated link : {link}")
             #send email code 
+            # send email with a messege otp
+            subject = f"{email} please verify your email"
+            messege = f"verify email {link}"
+            recipient_list = [email]
+            EMAIL_HOST_USER = settings.EMAIL_HOST_USER
+            email = EmailMessage(subject,messege,EMAIL_HOST_USER,recipient_list)
+            email.send()
             return attrs
         else:
             raise serializers.ValidationErr('you are not a registered user')
