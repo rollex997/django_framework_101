@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "car_zone_api_front",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
