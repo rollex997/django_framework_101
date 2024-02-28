@@ -1,0 +1,24 @@
+meta {
+  name: Team insert
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://127.0.0.1:8000/pages_api/teams_insert_update/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:multipart-form {
+  firstname: Aditya
+  lastname: Kumar
+  designation: Chief Engineer
+  photo: @file(/home/aditya/Pictures/mypic/im_20.jpg)
+  facebook_link: https://github.com/aryan68125/django_framework_101/tree/master/django_project
+  twitter_link: https://github.com/aryan68125/django_framework_101/tree/master/django_project
+}

@@ -5,9 +5,14 @@ meta {
 }
 
 get {
-  url: http://127.0.0.1:8000/pages_api/Teams/
+  url: http://127.0.0.1:8000/pages_api/teams/?page=1&records=1
   body: none
   auth: none
+}
+
+query {
+  page: 1
+  records: 1
 }
 
 headers {

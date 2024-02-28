@@ -1,0 +1,19 @@
+meta {
+  name: car delete
+  type: http
+  seq: 7
+}
+
+delete {
+  url: http://127.0.0.1:8000/cars_api/car_delete/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:multipart-form {
+  id: 8
+}

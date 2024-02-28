@@ -1,0 +1,23 @@
+meta {
+  name: Update car data
+  type: http
+  seq: 6
+}
+
+put {
+  url: http://127.0.0.1:8000/cars_api/cars_insert_or_update/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:multipart-form {
+  id: 8
+  car_title: hello
+  car_photo: @file(/home/aditya/Pictures/mypic/im_20.jpg)
+  state: FL
+  city: Florida
+}

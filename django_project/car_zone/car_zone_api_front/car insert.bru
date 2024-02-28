@@ -1,0 +1,86 @@
+meta {
+  name: car insert
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://127.0.0.1:8000/cars_api/cars_insert_or_update/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+    "car_title": "2024 Aditya 488 GTB",
+    "state": "TX",
+    "city": "Austin",
+    "color": "White",
+    "model": "488 GTB",
+    "year": 2017,
+    "condition": "Used",
+    "price": "40000.00",
+    "description": "<p>Ferrari 488 GTB is the top model in the 488 lineup and the price of 488 top model is Rs. 3.68 Crore. It gives a mileage of 8.77 kmpl. Ferrari 488 GTB is available in Automatic transmission and offered in 8 colours: Blu Tour De France, Nero, Rosso Mugello, Grigio Silverstone, Grigio Titanio, Giallo Modena, Rosso Corsa and Bianco Avus.</p>",
+    "car_photo": "/media/photos/cars/2024/02/27/1902536891.jpg",
+    "car_photo_1": "/media/photos/cars_1/2024/02/27/1902536917.jpg",
+    "car_photo_2": "/media/photos/cars_2/2024/02/27/1902537043.jpg",
+    "car_photo_3": "/media/photos/cars_3/2024/02/27/1902537077.jpg",
+    "car_photo_4": "/media/photos/cars_4/2024/02/27/1902537082.jpg",
+    "features": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      2
+    ],
+    "body_style": "Sports",
+    "engine": "3.4L Mid-Engine V6",
+    "transmission": "Automatic",
+    "interior": "Grey",
+    "miles": 10000,
+    "doors": "2",
+    "passengers": 2,
+    "vin_no": "asdasd",
+    "milage": 5,
+    "fuel_type": "Petrol",
+    "no_of_owners": "1",
+    "is_featured": true,
+    "created_date": "2024-02-27T13:08:50.212286Z"
+  }
+}
+
+body:multipart-form {
+  car_title: Aditya kumar car
+  state: AK
+  city: Alaska
+  color: red
+  model: Aditya Tushar industries
+  year: 2000
+  condition: superb
+  price: 125200
+  description: He is a hardworking car
+  car_photo: @file(/home/aditya/Downloads/car-photos/2017 Jaguar F-PACE/1902932514.jpg)
+  features: 1
+  features: 2
+  body_style: sposrter
+  engine: bionic engine
+  transmission: Manual
+  interior: skin color
+  miles: 123456789
+  doors: 4
+  passengers: 1
+  vin_no: 1901230100001
+  milage: 3
+  fuel_type: biware
+  no_of_owners: 1
+  is_featured: False
+}

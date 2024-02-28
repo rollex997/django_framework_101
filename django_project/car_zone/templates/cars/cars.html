@@ -7,7 +7,7 @@
         <div class="breadcrumb-areas">
             <h1>Our Car Inventory</h1>
             <ul class="breadcrumbs">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{% url "homepage" %}">Home</a></li>
                 <li class="active">Cars</li>
             </ul>
         </div>
@@ -20,8 +20,66 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-12">
-                
-                <div class="row">
+                <!--use this cars list to polulate cars in the row-->
+                <!--
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="car-box-3">
+                            <div class="car-thumbnail">
+                                <a href="car-details.html" class="car-img">
+                                    <div class="tag">For Rent</div>
+                                    <div class="price-box">
+                                        <span>$780.00</span>
+                                    </div>
+                                    <img class="d-block w-100" src="img/car/car-1.jpg" alt="car">
+                                </a>
+                                <div class="carbox-overlap-wrapper">
+                                    <div class="overlap-box">
+                                        <div class="overlap-btns-area">
+                                            <div class="car-magnify-gallery">
+                                                <a href="img/car/car-1.jpg" class="overlap-btn">
+                                                    <i class="fa fa-expand"></i>
+                                                    <img class="hidden" src="img/car/car-1.jpg">
+                                                </a>
+                                                <a href="img/car/car-2.jpg" class="hidden" >
+                                                    <img class="hidden" src="img/car/car-2.jpg">
+                                                </a>
+                                                <a href="img/car/car-3.jpg" class="hidden">
+                                                    <img class="hidden" src="img/car/car-3.jpg">
+                                                </a>
+                                                <a href="img/car/car-4.jpg" class="hidden">
+                                                    <img class="hidden" src="img/car/car-4.jpg">
+                                                </a>
+                                                <a href="img/car/car-5.jpg" class="hidden" >
+                                                    <img class="hidden" src="img/car/car-5.jpg">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="car-details.html">Lamborghini Huracán</a>
+                                </h1>
+                                <div class="location">
+                                    <a href="car-details.html">
+                                        <i class="flaticon-pin"></i>123 Kathal St. Tampa City,
+                                    </a>
+                                </div>
+                                <ul class="facilities-list clearfix">
+                                    <li>Petrol</li>
+                                    <li>4,000 km</li>
+                                    <li>Manual</li>
+                                    <li>Sport</li>
+                                    <li>white</li>
+                                    <li>2020</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                -->
+                <div class="row" id="carsList">
                     <div class="col-lg-6 col-md-6">
                         <div class="car-box-3">
                             <div class="car-thumbnail">

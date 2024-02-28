@@ -1,0 +1,25 @@
+meta {
+  name: update team
+  type: http
+  seq: 9
+}
+
+put {
+  url: http://127.0.0.1:8000/pages_api/teams_insert_update/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:multipart-form {
+  id: 17
+  firstname: Kunal
+  lastname: Kohli
+  designation: Peon
+  photo: @file(/home/aditya/Pictures/mypic/im_20.jpg)
+  facebook_link: kohli
+  twitter_link: kunal
+}

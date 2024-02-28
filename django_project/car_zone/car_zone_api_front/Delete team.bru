@@ -1,0 +1,19 @@
+meta {
+  name: Delete team
+  type: http
+  seq: 10
+}
+
+delete {
+  url: http://127.0.0.1:8000/pages_api/teams_delete/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:multipart-form {
+  id: 16
+}
