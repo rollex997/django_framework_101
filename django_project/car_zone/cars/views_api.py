@@ -3,8 +3,8 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAdminUser, Is
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from cars.models import Car
-from cars.serializer import CarAdminSerializer, CarSerializer
+from cars.models import *
+from cars.serializer import CarAdminSerializer, CarSerializer, CarFeaturesSerializer
 from cars.pagination_api import *
 
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -26,8 +26,23 @@ class Cars(APIView):
                                                  'state_choices':Car.state_choice, 
                                                  'year_choices':Car.year_choice,
                                                  'features_choices':Car.features_choices,
-                                                 'door_choices':Car.door_choices
+                                                 'door_choices':Car.door_choices,
                                                  })
+
+class Car_features_names(APIView):
+    # permission_classes = [IsAuthenticatedOrReadOnly]
+    def post(self,request):
+        data = request.data
+        if data:
+            features = data['payload']
+            feature_array=features['featureArray']
+            print(feature_array)
+            featureArray = []
+            for feature in feature_array:
+                featureArray.append(f"{Features.objects.get(pk=feature)}")
+            return Response({'features_names':featureArray},status=200)
+        else:
+            return Response({'errors':"No features assigned to this car"},status=400)
 
 class FeaturedCars(APIView):
     permission_classes=[IsAuthenticatedOrReadOnly]

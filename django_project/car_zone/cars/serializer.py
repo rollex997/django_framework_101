@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from cars.models import Car 
+from cars.models import *
 class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model=Car
@@ -69,3 +69,9 @@ class CarAdminSerializer(serializers.ModelSerializer):
                       'no_of_owners',
                       'is_featured',
         )
+
+class CarFeaturesSerializer(serializers.ModelField):
+    class Meta:
+        model = Features
+        fields=('features',)
+        read_only_fields=('features',)

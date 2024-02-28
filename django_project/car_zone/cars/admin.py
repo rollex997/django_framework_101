@@ -48,4 +48,4 @@ class CarModelAdmin(admin.ModelAdmin):
 
 @admin.register(Features)
 class FeaturesModelAdmin(admin.ModelAdmin):
-    list_display=('features',)
+    list_display=('id','features',)
