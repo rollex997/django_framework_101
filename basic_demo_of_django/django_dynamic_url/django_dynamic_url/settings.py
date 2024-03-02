@@ -17,7 +17,6 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR/'templates'
 STATIC_DIR = BASE_DIR/'static'
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
