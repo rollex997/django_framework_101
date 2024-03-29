@@ -1,0 +1,29 @@
+meta {
+  name: create_data
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://127.0.0.1:8000/StudentAPI/
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+    "name": "Ballistic",
+    "roll": 1000,
+    "email": "ballistic@gmail.com"
+  }
+}
+
+body:multipart-form {
+  name: Aditya Kumar
+  roll: 1
+  email: aditya@gmail.com
+}

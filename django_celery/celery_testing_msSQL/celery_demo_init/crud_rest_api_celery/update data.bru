@@ -1,0 +1,22 @@
+meta {
+  name: update data
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://127.0.0.1:8000/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:multipart-form {
+  id: 1
+  name: Barbatos
+  roll: 800
+  email: barbatos@gmail.com
+}

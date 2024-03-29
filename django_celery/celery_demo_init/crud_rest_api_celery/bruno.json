@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "crud_rest_api_celery",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

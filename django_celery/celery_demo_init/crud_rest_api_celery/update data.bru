@@ -1,0 +1,22 @@
+meta {
+  name: update data
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://127.0.0.1:8000/StudentAPI/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:multipart-form {
+  id: 5
+  name: Dynamite
+  roll: 360
+  email: dynamite@gmail.com
+}

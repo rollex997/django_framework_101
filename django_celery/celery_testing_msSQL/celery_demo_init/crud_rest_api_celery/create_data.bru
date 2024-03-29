@@ -1,0 +1,29 @@
+meta {
+  name: create_data
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://127.0.0.1:8000/
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+    "name": "Rollex",
+    "roll": 997,
+    "email": "rollex@gmail.com"
+  }
+}
+
+body:multipart-form {
+  name: Aditya Kumar
+  roll: 1
+  email: aditya@gmail.com
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Get one record
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://127.0.0.1:8000/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:multipart-form {
+  id: 1
+}
