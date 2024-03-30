@@ -1,0 +1,10 @@
+.student_table_style{
+    height: 300px;
+    overflow-y: scroll;
+   }
+.button_div{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-around;
+}   

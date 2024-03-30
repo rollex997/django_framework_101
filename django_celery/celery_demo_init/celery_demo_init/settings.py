@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'app1',
     'task1',
+    'marks',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +126,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR]
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+
+#CORS SETTINGS FOR APIs
+CORS_ALLOWED_ORIGINS = [
+    # Add allowed origins here
+    "http://127.0.0.1:8000",
+]
+
+# Optional: Allow all origins (not recommended for production)
+# CORS_ALLOW_ALL_ORIGINS = True
