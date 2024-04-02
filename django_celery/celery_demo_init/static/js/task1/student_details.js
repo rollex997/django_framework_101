@@ -165,6 +165,9 @@ $('body').on('click','#save_changes',function(){
       })
     } else if (result.isDenied) {
       Swal.fire("Changes are not saved", "", "info");
+      $('#name').val("")
+      $('#roll').val("")
+      $('#email').val("")
     }
   });
  }

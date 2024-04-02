@@ -8,3 +8,5 @@ class Marks(models.Model):
     chemistry = models.FloatField()
     english = models.FloatField()
     hindi = models.FloatField()
+    def __str__(self):
+        return self.student.name

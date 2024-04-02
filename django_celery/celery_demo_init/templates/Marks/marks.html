@@ -1,0 +1,90 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<link href="{% static 'css/task1/student_detials.css' %}" rel="stylesheet"/>
+<script>
+    var StudentAPI_url = '{% url "StudentAPI" %}'
+    var MarksCRUD_API_url = '{% url "MarksCRUD_API" %}'
+</script>
+<div class="card my-1">
+    <div class="card-body">
+        <h1>Marks Detail Page</h1>
+    </div>
+</div>
+<div class="card my-1">
+    <div class="card-body">
+        <h3>Marks Table</h3>
+        <div class="card my-1">
+            <div class="card-body">
+                <div class="table-responsive student_table_style" id="marks_table_master">    
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" style="display:none">Marks_RecordID</th>
+                            <th scope="col" style="display:none">Student_RecordID</th>
+                            <th scope="col" style="display:none">Student</th>
+                            <th scope="col" >Student Name</th>
+                            <th scope="col">Maths</th>
+                            <th scope="col">Physics</th>
+                            <th scope="col">Chemistry</th>
+                            <th scope="col">English</th>
+                            <th scope="col">Hindi</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody id="marks_table">
+                            <!--When the user clicks on a row he should go into student's Details page for one 
+                            student
+                            -->
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+        <div class="card my-1">
+            <div class="card-body">
+                <div id="marks_update_form">
+                    <div class="row">
+                        <h4><span id="change_title_of_form">Update</span> Marks</h4>
+                        <div class="col-lg-4 col-md-4 col-sm-12 my-1">
+                            <label for="maths" class="form-label">Maths</label>
+                            <input type="text" class="form-control" id="maths" placeholder="Maths">
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 my-1">
+                            <label for="physics" class="form-label">Physics</label>
+                            <input type="text" class="form-control" id="physics" placeholder="Physics">
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 my-1">
+                            <label for="chemistry" class="form-label">Chemistry</label>
+                            <input type="email" class="form-control" id="chemistry" placeholder="Chemistry">
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 my-1">
+                            <label for="english" class="form-label">English</label>
+                            <input type="email" class="form-control" id="english" placeholder="English">
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 my-1">
+                            <label for="hindi" class="form-label">Hindi</label>
+                            <input type="email" class="form-control" id="hindi" placeholder="Hindi">
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 my-1">
+                            <label for="select_student" class="form-label mt-3"> </label>
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select_student">
+                                <option value="-1">::SELECT STUDENT::</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 text-center my-2">
+                            <button class="btn btn-primary" id="save_changes">Save Changes</button>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12"></div>
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+</div>
+<script src="{% static 'js/marks/marks.js' %}"></script>
+{% endblock content %}
