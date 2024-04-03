@@ -5,3 +5,7 @@ from task1.models import *
 class StudentModelAdmin(admin.ModelAdmin):
     list_display = ('id','name','roll','email')
     list_display_links=('name',)
+@admin.register(StudentCategory)
+class StudentCategoryAdmin(admin.ModelAdmin):
+    list_display=('id','category')
+    list_display_links=('category',)

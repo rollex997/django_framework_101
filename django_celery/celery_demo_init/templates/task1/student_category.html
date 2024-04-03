@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<link href="{% static 'css/task1/student_detials.css' %}" rel="stylesheet"/>
+<script>
+    var StudentCategoryAPI_url = '{% url "StudentCategoryAPI" %}'
+</script>
+<div class="card my-1">
+    <div class="card-body">
+        <h1>Student's Category Page</h1>
+    </div>
+</div>
+<div class="card my-1">
+    <div class="card-body">
+        <h3>Student category Table</h3>
+        <div class="card my-1">
+            <div class="card-body">
+                <div class="table-responsive student_table_style" id="student_table_master">    
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" style="display:none">RecordID</th>
+                            <th scope="col">Category Name</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody id="student_category_table">
+                            <!--When the user clicks on a row he should go into student's Details page for one 
+                            student
+                            -->
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+        <div class="card my-1">
+            <div class="card-body">
+                <div id="student_update_form">
+                    <div class="row">
+                        <h4><span id="change_title_of_form">Update</span> Category</h4>
+                        <div class="col-lg-4 col-md-4 col-sm-12 my-1">
+                            <input type="text" class="form-control" id="category" placeholder="Category Name">
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 text-center my-2">
+                            <button class="btn btn-primary" id="save_changes">Save Changes</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12"></div>
+                        
+                        <div class="col-lg-4 col-md-4 col-sm-12"></div>
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+</div>
+<script src="{% static 'js/task1/student_category.js' %}"></script>
+{% endblock content %}
