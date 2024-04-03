@@ -1,0 +1,19 @@
+meta {
+  name: student category delete
+  type: http
+  seq: 14
+}
+
+delete {
+  url: http://127.0.0.1:8000/StudentCategoryAPI/?Accept=application/json
+  body: multipartForm
+  auth: none
+}
+
+query {
+  Accept: application/json
+}
+
+body:multipart-form {
+  id: 13
+}

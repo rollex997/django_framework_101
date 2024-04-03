@@ -1,0 +1,21 @@
+meta {
+  name: student category update
+  type: http
+  seq: 13
+}
+
+put {
+  url: http://127.0.0.1:8000/StudentCategoryAPI/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:multipart-form {
+  category_id: 13
+  category: Jatayui
+}
