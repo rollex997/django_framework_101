@@ -1,0 +1,19 @@
+meta {
+  name: Delete Marks
+  type: http
+  seq: 10
+}
+
+delete {
+  url: http://127.0.0.1:8000/marks/MarksCRUD_API/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:multipart-form {
+  marks_id: 18
+}

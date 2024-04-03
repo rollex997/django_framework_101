@@ -1,0 +1,25 @@
+meta {
+  name: Marks Update
+  type: http
+  seq: 9
+}
+
+put {
+  url: http://127.0.0.1:8000/marks/MarksCRUD_API/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:multipart-form {
+  student_id: 1
+  maths: 60
+  physics: 60
+  chemistry: 60
+  english: 60
+  hindi: 60
+  student: 15
+}

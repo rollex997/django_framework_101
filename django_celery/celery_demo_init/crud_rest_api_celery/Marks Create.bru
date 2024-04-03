@@ -1,0 +1,24 @@
+meta {
+  name: Marks Create
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://127.0.0.1:8000/marks/MarksCRUD_API/
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:multipart-form {
+  student: 1
+  maths: 62
+  physics: 67
+  chemistry: 72
+  english: 66
+  hindi: 78
+}

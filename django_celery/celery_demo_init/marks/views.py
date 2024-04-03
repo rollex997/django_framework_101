@@ -13,6 +13,20 @@ class MarksPage(TemplateView):
 class MarksCRUD_API(APIView):
     # Get one record or create new marks in database
     def post(self,request):
+        #create marks 
+        serializer = MarksSerializers(data=request.data)
+        try:
+            if serializer.is_valid():
+                student = request.data['student']
+                serializer.save(student = student)
+                return Response({'status':201,'msg':'Marks Created'},status=201)
+            else:
+                print(str(serializer.errors))
+                return Response({'status':500,'error':str(serializer.errors)},status=500)
+        except IntegrityError as e:
+            return Response({'status':500,'error':str(e)},status=500)
+    # get all records of marks 
+    def get(self, request):
         id = request.data.get('marks_id')
         if id:
             #get one record of marks from DB
@@ -23,26 +37,12 @@ class MarksCRUD_API(APIView):
             except Marks.DoesNotExist as e:
                 return Response({'status':500,'error':str(e)},status=500)
         else:
-            #create marks 
-            serializer = MarksSerializers(data=request.data)
-            try:
-                if serializer.is_valid():
-                    student = request.data['student']
-                    serializer.save(student = student)
-                    return Response({'status':201,'msg':'Marks Created'},status=201)
-                else:
-                    print(str(serializer.errors))
-                    return Response({'status':500,'error':str(serializer.errors)},status=500)
-            except IntegrityError as e:
-                return Response({'status':500,'error':str(e)},status=500)
-    # get all records of marks 
-    def get(self, request):
-        marks = Marks.objects.all()
-        serializer = Get_All_MarksSerializers(marks, many=True)  # Query for instances of Marks
-        if marks:  # You might want to check if there are any instances retrieved
-            return Response({'status': 200, 'data': serializer.data}, status=200)
-        else:
-            return Response({'status': 500, 'error': 'Marks Not Found'}, status=500)
+            marks = Marks.objects.all()
+            serializer = Get_All_MarksSerializers(marks, many=True)  # Query for instances of Marks
+            if marks:  # You might want to check if there are any instances retrieved
+                return Response({'status': 200, 'data': serializer.data}, status=200)
+            else:
+                return Response({'status': 500, 'error': 'Marks Not Found'}, status=500)
     #update marks 
     def put(self, request):
         student_id = request.data.get('student_id')

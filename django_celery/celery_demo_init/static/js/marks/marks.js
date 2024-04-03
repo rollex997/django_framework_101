@@ -172,6 +172,19 @@ function get_marks_data(){
                 create_marks_table(i,marks_id,student,maths,physics,chemistry,english,hindi)
             }
         }
+        else{
+            var i = ""
+            var marks_id = "NULL"
+            var student = "NULL"
+            var maths = "NULL"
+
+            var physics = "NULL"
+            var chemistry = "NULL"
+            var english = "NULL"
+            var hindi = "NULL"
+            $('#marks_table').empty()
+            create_marks_table(i,marks_id,student,maths,physics,chemistry,english,hindi)
+        }
     })
 }
 
@@ -296,40 +309,58 @@ function update_marks_of_student(){
 }
 //delete marks of student
 function delete_marks(marks_id){
-    var data={
-        marks_id:marks_id,
-    }
-    fetch(
-        MarksCRUD_API_url,{
-            method:'DELETE',
-            headers:{
-                Accept:'application/json',
-                'Content-Type':'application/json',
-                'X-CSRFToken':getCookie("csrftoken"),
-            },
-            body:JSON.stringify(data)
-        }
-    ).then(response=>response.json())
-    .then(data=>{
-        if(data.status==200){
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            var data={
+                marks_id:marks_id,
+            }
+            fetch(
+                MarksCRUD_API_url,{
+                    method:'DELETE',
+                    headers:{
+                        Accept:'application/json',
+                        'Content-Type':'application/json',
+                        'X-CSRFToken':getCookie("csrftoken"),
+                    },
+                    body:JSON.stringify(data)
+                }
+            ).then(response=>response.json())
+            .then(data=>{
+                if(data.status==200){
+                    get_marks_data()
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: 'Marks Deleted!!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                }
+                else{
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: data.error,
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                }
+            })
             get_marks_data()
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: 'Marks Deleted!!',
-                showConfirmButton: false,
-                timer: 1500
-              });
+        //   Swal.fire({
+        //     title: "Deleted!",
+        //     text: "Your file has been deleted.",
+        //     icon: "success"
+        //   });
         }
-        else{
-            Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title: data.error,
-                showConfirmButton: false,
-                timer: 1500
-              });
-        }
-    })
+      });
 }
 //**** MARKS CRUD OPERATIONS STARTS HERE

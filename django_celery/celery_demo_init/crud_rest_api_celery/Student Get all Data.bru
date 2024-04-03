@@ -1,20 +1,15 @@
 meta {
-  name: update data
+  name: Student Get all Data
   type: http
-  seq: 5
+  seq: 3
 }
 
-put {
+get {
   url: http://127.0.0.1:8000/StudentAPI/
-  body: multipartForm
+  body: none
   auth: none
 }
 
 headers {
   Accept: application/json
-}
-
-body:multipart-form {
-  id: 9
-  roll: 7
 }

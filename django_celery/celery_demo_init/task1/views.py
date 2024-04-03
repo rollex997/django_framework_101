@@ -15,26 +15,15 @@ class StudentDetailsView(TemplateView):
     template_name = 'task1/Student_details.html' 
 class StudentAPI(APIView):
     def post(self,request):
-        id = request.data.get('student_pk')
-        if id:
-            try:
-                student = Student.objects.get(id=id)
-                serializer = StudentSerializers(student)
-                return Response({'status':200,'data':serializer.data},status=200)
-            except serializer.errors as e:
-                return Response({'status':500,'error':e},status=500)
-            except Student.DoesNotExist as e:
-                return Response({'status':500,'error':e},status=500)
-        else:
-            serializer = StudentSerializers(data = request.data)
-            try:
-                if serializer.is_valid():
-                    serializer.save()
-                    return Response({'status':201,'msg':'Data Created Successfully!!!'},status=201)
-                else:
-                    return Response({'status':500,'error':serializer.errors},status=500)
-            except IntegrityError:
-                return Response({'status':500,'error':'Roll number must be unique'},status=500)
+        serializer = StudentSerializers(data = request.data)
+        try:
+            if serializer.is_valid():
+                serializer.save()
+                return Response({'status':201,'msg':'Data Created Successfully!!!'},status=201)
+            else:
+                return Response({'status':500,'error':serializer.errors},status=500)
+        except IntegrityError:
+            return Response({'status':500,'error':'Roll number must be unique'},status=500)
     def put(self,request):
         id = request.data.get('id')
         try:
@@ -48,6 +37,15 @@ class StudentAPI(APIView):
         except Student.DoesNotExist as e:
             return Response({'status':404,'error':f"{e}"},status=404)
     def get(self,request):
+        id = request.data.get('id')
+        if id:
+            try:
+                student = Student.objects.get(id=id)
+                serializer = StudentSerializers(student)
+                return Response({'status':200,'data':serializer.data},status=200)
+            except Student.DoesNotExist as e:
+                return Response({'status':400,'error':str(e)},status=400)
+        else:
             #get all data
             student = Student.objects.all()
             serializer = StudentSerializers(student,many=True)
