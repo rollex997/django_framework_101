@@ -36,8 +36,8 @@ class StudentAPI(APIView):
                 return Response({'status':500,'error':str(serializer.errors['roll'][0])},status=500)
         except Student.DoesNotExist as e:
             return Response({'status':404,'error':f"{e}"},status=404)
-    def get(self,request):
-        id = request.data.get('id')
+    def get(self,request,student_id=None):
+        id = student_id
         if id:
             try:
                 student = Student.objects.get(id=id)

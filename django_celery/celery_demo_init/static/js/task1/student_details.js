@@ -253,3 +253,28 @@ $('body').on('click','#save_changes',function(){
     }
   });
  }
+ //get one student record
+ $('body').ready(function(){
+  getOneRecordFromDB()
+ })
+function getOneRecordFromDB() {
+  student_id=8
+    fetch(`/StudentAPI/${student_id}/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);  // Handle the data here, such as updating UI
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+}

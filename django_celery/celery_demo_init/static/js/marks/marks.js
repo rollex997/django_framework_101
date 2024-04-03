@@ -363,4 +363,29 @@ function delete_marks(marks_id){
         }
       });
 }
+//get one record
+$('body').ready(function(){
+    getOneRecordFromDB()
+})
+function getOneRecordFromDB() {
+    marks_id=14
+    fetch(`/marks/MarksCRUD_API/${marks_id}/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);  // Handle the data here, such as updating UI
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+}
 //**** MARKS CRUD OPERATIONS STARTS HERE

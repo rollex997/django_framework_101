@@ -4,4 +4,5 @@ urlpatterns = [
     path('',StudentDashboardView.as_view(),name="StudentDashboardView"),
     path('StudentDetailsView/',StudentDetailsView.as_view(),name="StudentDetailsView"),
     path('StudentAPI/',StudentAPI.as_view(),name="StudentAPI"),
+    path('StudentAPI/<int:student_id>/',StudentAPI.as_view(),name="StudentAPI_get_one_record"),
 ]

@@ -25,9 +25,9 @@ class MarksCRUD_API(APIView):
                 return Response({'status':500,'error':str(serializer.errors)},status=500)
         except IntegrityError as e:
             return Response({'status':500,'error':str(e)},status=500)
-    # get all records of marks 
-    def get(self, request):
-        id = request.data.get('marks_id')
+    def get(self, request,marks_id=None):
+        # id = request.data.get('marks_id')
+        id=marks_id
         if id:
             #get one record of marks from DB
             try:
