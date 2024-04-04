@@ -21,7 +21,8 @@ class StudentAPI(APIView):
                 serializer.save()
                 return Response({'status':201,'msg':'Data Created Successfully!!!'},status=201)
             else:
-                return Response({'status':500,'error':serializer.errors},status=500)
+                print(str(serializer.errors))
+                return Response({'status':500,'error':str(serializer.errors)},status=500)
         except IntegrityError:
             return Response({'status':500,'error':'Roll number must be unique'},status=500)
     def put(self,request):
@@ -33,22 +34,37 @@ class StudentAPI(APIView):
                 serializer.save()
                 return Response({'status':200,'msg':'Data Updated!!'},status=200)
             else:
-                return Response({'status':500,'error':str(serializer.errors['roll'][0])},status=500)
+                print(str(serializer.errors))
+                return Response({'status':500,'error':str(serializer.errors)},status=500)
         except Student.DoesNotExist as e:
             return Response({'status':404,'error':f"{e}"},status=404)
+    # def get(self,request,student_id=None):
+    #     id = student_id
+    #     if id:
+    #         try:
+    #             student = Student.objects.get(id=id)
+    #             serializer = StudentSerializers(student)
+    #             return Response({'status':200,'data':serializer.data},status=200)
+    #         except Student.DoesNotExist as e:
+    #             return Response({'status':400,'error':str(e)},status=400)
+    #     else:
+    #         #get all data
+    #         student = Student.objects.all()
+    #         serializer = StudentSerializers(student,many=True)
+    #         return Response({'status':200,'data':serializer.data},status=200)
     def get(self,request,student_id=None):
         id = student_id
         if id:
             try:
                 student = Student.objects.get(id=id)
-                serializer = StudentSerializers(student)
+                serializer = GetAllStudentSerializers(student)
                 return Response({'status':200,'data':serializer.data},status=200)
             except Student.DoesNotExist as e:
                 return Response({'status':400,'error':str(e)},status=400)
         else:
             #get all data
             student = Student.objects.all()
-            serializer = StudentSerializers(student,many=True)
+            serializer = GetAllStudentSerializers(student,many=True)
             return Response({'status':200,'data':serializer.data},status=200)
     def delete(self,request):
         id = request.data.get('id')

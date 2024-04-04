@@ -4,6 +4,7 @@
 <link href="{% static 'css/task1/student_detials.css' %}" rel="stylesheet"/>
 <script>
     var StudentAPI_url = '{% url "StudentAPI" %}'
+    var StudentCategoryAPI_url = '{% url "StudentCategoryAPI" %}'
 </script>
 <div class="card my-1">
     <div class="card-body">
@@ -24,6 +25,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Roll</th>
                             <th scope="col">E-Mail</th>
+                            <th scope="col">Category</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
@@ -49,6 +51,11 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-12 my-1">
                             <input type="email" class="form-control" id="email" placeholder="Email">
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 my-1">
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select_student">
+                                <option value="-1">::SELECT STUDENT CATEGORY::</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
