@@ -205,7 +205,7 @@ function create_marks_table(i,marks_id,student,maths,physics,chemistry,english,h
             <td>${hindi}</td>
             <td>
                 <div id="action_button_${marks_id}">
-                    <button class="btn btn-dark" onclick="action_button('action_button_${marks_id}','${marks_id}','${student.id}','${student}','${maths}','${physics}','${chemistry}','${english}','${hindi}')">...</button>
+                    <button class="btn btn-dark" style="background:#EFBC9B;" onclick="action_button('action_button_${marks_id}','${marks_id}','${student.id}','${student}','${maths}','${physics}','${chemistry}','${english}','${hindi}')">...</button>
                 </div>
             </td>
         </tr>

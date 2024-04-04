@@ -107,7 +107,7 @@ function create_table(i,category_id,category_name){
             <td>${category_name}</td>
             <td>
                 <div id="action_button_${category_id}">
-                    <button class="btn btn-dark" onclick="action_button('action_button_${category_id}','${category_id}','${category_name}')">...</button>
+                    <button class="btn btn-dark" style="background:#EFBC9B;" onclick="action_button('action_button_${category_id}','${category_id}','${category_name}')">...</button>
                 </div>
             </td>
         </tr>

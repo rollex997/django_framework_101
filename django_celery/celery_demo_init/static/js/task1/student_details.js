@@ -73,7 +73,7 @@ function get_student_data(){
             <td>${categoryName}</td>
             <td>
                 <div id="action_button_${id}">
-                    <button class="btn btn-dark" onclick="action_button('action_button_${id}','${id}','${name}','${roll}','${email}','${categoryId}','${categoryName}')">...</button>
+                    <button class="btn btn-dark" style="background:#EFBC9B;" onclick="action_button('action_button_${id}','${id}','${name}','${roll}','${email}','${categoryId}','${categoryName}')">...</button>
                 </div>
             </td>
         </tr>
@@ -84,7 +84,7 @@ function get_student_data(){
   $(`#${action_button_id}`).empty()
   $(`#${action_button_id}`).append(
     `
-    <button class="btn btn-dark" onclick="student_details_fun('${id}','${name}','${roll}','${email}','${categoryId}','${categoryName}',)"><i class="fa-solid fa-trash"></i></button>   
+    <button class="btn btn-dark" style= "background:#D862BC;" onclick="student_details_fun('${id}','${name}','${roll}','${email}','${categoryId}','${categoryName}',)"><i class="fa-solid fa-user"></i></button>   
     <button class="btn btn-primary" onclick="update_student_form('${id}','${name}','${roll}','${email}','${categoryId}','${categoryName}')"><i class="fa-solid fa-pen"></i></button>
     <button class="btn btn-danger" onclick="delete_student('${id}')"><i class="fa-solid fa-trash"></i></button>    
     `
