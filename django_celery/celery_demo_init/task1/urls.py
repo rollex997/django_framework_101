@@ -8,4 +8,5 @@ urlpatterns = [
     
     path('StudentCategoryPage/',StudentCategoryPage.as_view(),name="StudentCategoryPage"),
     path('StudentCategoryAPI/',StudentCategoryAPI.as_view(),name="StudentCategoryAPI"),
+    path('MarksCRUD_student_API/<int:student_id>/',MarksCRUD_student_API.as_view(),name="MarksCRUD_student_API"),
 ]

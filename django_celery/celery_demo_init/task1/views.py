@@ -5,6 +5,8 @@ from task1.models import *
 from task1.serializers import *
 from django.views.generic import TemplateView
 from django.db import IntegrityError
+from marks.models import *
+from marks.serializers import *
 # Create your views here.
 class StudentDashboardView(TemplateView):
     template_name = 'task1/student_dashboard.html' 
@@ -38,20 +40,6 @@ class StudentAPI(APIView):
                 return Response({'status':500,'error':str(serializer.errors)},status=500)
         except Student.DoesNotExist as e:
             return Response({'status':404,'error':f"{e}"},status=404)
-    # def get(self,request,student_id=None):
-    #     id = student_id
-    #     if id:
-    #         try:
-    #             student = Student.objects.get(id=id)
-    #             serializer = StudentSerializers(student)
-    #             return Response({'status':200,'data':serializer.data},status=200)
-    #         except Student.DoesNotExist as e:
-    #             return Response({'status':400,'error':str(e)},status=400)
-    #     else:
-    #         #get all data
-    #         student = Student.objects.all()
-    #         serializer = StudentSerializers(student,many=True)
-    #         return Response({'status':200,'data':serializer.data},status=200)
     def get(self,request,student_id=None):
         id = student_id
         if id:
@@ -131,3 +119,25 @@ class StudentCategoryAPI(APIView):
         else:
             return Response({'status':500,'error':'Record ID to Delete is not Found'},status=500)
 # STUDENT CATEGORY RELATED FUNCTIONS ENDS  
+
+# GET MARKS OF THE SELECTED STUDENT STARTS
+class MarksCRUD_student_API(APIView):
+    def get(self, request,student_id=None):
+        # id = request.data.get('marks_id')
+        id=student_id
+        if id:
+            #get one record of marks from DB
+            try:
+                marks = Marks.objects.get(student=id)
+                serializer = MarksSerializers(marks)
+                return Response({'status':200,'data':serializer.data},status=200)
+            except Marks.DoesNotExist as e:
+                return Response({'status':500,'error':str(e)},status=500)
+        else:
+            marks = Marks.objects.all()
+            serializer = Get_All_MarksSerializers(marks, many=True)  # Query for instances of Marks
+            if marks:  # You might want to check if there are any instances retrieved
+                return Response({'status': 200, 'data': str(serializer.data)}, status=200)
+            else:
+                return Response({'status': 500, 'error': 'Marks Not Found'}, status=500)
+# GET MARKS OF THE SELECTED STUDENT ENDS

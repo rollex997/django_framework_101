@@ -84,6 +84,7 @@ function get_student_data(){
   $(`#${action_button_id}`).empty()
   $(`#${action_button_id}`).append(
     `
+    <button class="btn btn-dark" onclick="student_details_fun('${id}','${name}','${roll}','${email}','${categoryId}','${categoryName}',)"><i class="fa-solid fa-trash"></i></button>   
     <button class="btn btn-primary" onclick="update_student_form('${id}','${name}','${roll}','${email}','${categoryId}','${categoryName}')"><i class="fa-solid fa-pen"></i></button>
     <button class="btn btn-danger" onclick="delete_student('${id}')"><i class="fa-solid fa-trash"></i></button>    
     `
@@ -284,32 +285,6 @@ $('body').on('click','#save_changes',function(){
     }
   });
  }
- //get one student record starts
- $('body').ready(function(){
-  getOneRecordFromDB()
- })
-function getOneRecordFromDB() {
-  student_id=8
-    fetch(`/StudentAPI/${student_id}/`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        // console.log(data);  // Handle the data here, such as updating UI
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-    });
-}
-//get one student ends
 
 //student category
 //get all student category
@@ -360,3 +335,87 @@ function get_all_student_categories(){
         `
     )
   }
+
+//GET ONE STUDENT STARTS
+// Function to handle row selection
+function reset_student_details_display(){
+  $('#name_display').text("")
+  $('#roll_display').text("")
+  $('#email_display').text("")
+  $('#category_display').text("")
+
+  $('#maths_display').text("")
+  $('#physics_display').text("")
+  $('#chemistry_display').text("")
+  $('#english_display').text("")
+  $('#hindi_display').text("")
+}
+function student_details_fun(id,name,roll,email,categoryId,categoryName){
+  reset_student_details_display()
+  getOneRecordFromDB(id)
+    $('#student_name').text(name)
+    $('#name_display').text(name)
+    $('#roll_display').text(roll)
+    $('#email_display').text(email)
+    $('#category_display').text(categoryName)
+}
+ $('body').ready(function(){
+  // getOneRecordFromDB()
+  reset_student_details_display()
+ })
+function getOneRecordFromDB(student_id) {
+  // `/StudentAPI/${student_id}/`
+    fetch(`/MarksCRUD_student_API/${student_id}/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // console.log(data);  // Handle the data here, such as updating UI 
+        // console.log(data.data)
+        var dataObject = data.data;
+        var maths = dataObject.maths
+        var physics = dataObject.physics
+        var chemistry = dataObject.chemistry
+        var english = dataObject.english
+        var hindi = dataObject.hindi
+        // console.log(maths)
+        // console.log(physics)
+        // console.log(chemistry)
+        // console.log(english)
+        // console.log(hindi)
+        selected_student_marks_delatis(maths,physics,chemistry,english,hindi)
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+}
+function selected_student_marks_delatis(maths,physics,chemistry,english,hindi){
+  // console.log(maths)
+  // console.log(physics)
+  // console.log(chemistry)
+  // console.log(english)
+  // console.log(hindi)
+  $('#maths_display').text(maths)
+  $('#physics_display').text(physics)
+  $('#chemistry_display').text(chemistry)
+  $('#english_display').text(english)
+  $('#hindi_display').text(hindi)
+}
+//GET ONE STUDENT ENDS
+
+//DOWNLOAD BUTTON RELATED FUNCTION STARTS
+$('body').on('click','#download_button',function(){
+  download_button()
+})
+function download_button(){
+  console.log("download button clicked")
+}
+//DOWNLOAD BUTTON RELATED FUNCTION ENDS
