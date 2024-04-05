@@ -353,6 +353,8 @@ function reset_student_details_display(){
 function student_details_fun(id,name,roll,email,categoryId,categoryName){
   reset_student_details_display()
   getOneRecordFromDB(id)
+    $('#student_id_pk').text(id)
+    $('#student_marks_id_pk').text(categoryId)
     $('#student_name').text(name)
     $('#name_display').text(name)
     $('#roll_display').text(roll)
@@ -381,6 +383,7 @@ function getOneRecordFromDB(student_id) {
         // console.log(data);  // Handle the data here, such as updating UI 
         // console.log(data.data)
         var dataObject = data.data;
+        var marks_id = dataObject.id
         var maths = dataObject.maths
         var physics = dataObject.physics
         var chemistry = dataObject.chemistry
@@ -391,18 +394,19 @@ function getOneRecordFromDB(student_id) {
         // console.log(chemistry)
         // console.log(english)
         // console.log(hindi)
-        selected_student_marks_delatis(maths,physics,chemistry,english,hindi)
+        selected_student_marks_delatis(marks_id,maths,physics,chemistry,english,hindi)
     })
     .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
     });
 }
-function selected_student_marks_delatis(maths,physics,chemistry,english,hindi){
+function selected_student_marks_delatis(marks_id,maths,physics,chemistry,english,hindi){
   // console.log(maths)
   // console.log(physics)
   // console.log(chemistry)
   // console.log(english)
   // console.log(hindi)
+  $('#marks_id_pk').text(marks_id)
   $('#maths_display').text(maths)
   $('#physics_display').text(physics)
   $('#chemistry_display').text(chemistry)
@@ -416,6 +420,31 @@ $('body').on('click','#download_button',function(){
   download_button()
 })
 function download_button(){
-  console.log("download button clicked")
+  //#working (test)
+  var marks_id = $('#marks_id_pk').text()
+  var student_id = $('#student_id_pk').text()
+  var categoryId = $('#student_marks_id_pk').text()
+    fetch('/generate-pdf/'+student_id+'/'+categoryId+'/'+marks_id+'/') // Replace with your Django endpoint URL
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'generated_pdf.pdf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+            console.error('Error downloading PDF:', error);
+            alert('Error downloading PDF');
+        });
+  //#working (test)
 }
 //DOWNLOAD BUTTON RELATED FUNCTION ENDS
