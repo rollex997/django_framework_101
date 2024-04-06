@@ -11,6 +11,6 @@ urlpatterns = [
     path('MarksCRUD_student_API/<int:student_id>/',MarksCRUD_student_API.as_view(),name="MarksCRUD_student_API"),
 
     #working (test)
-    # path('generate-pdf/', generate_pdf, name="generate_pdf"),
-    path('generate-pdf/<int:student_id>/<int:categoryId>/<int:marks_id>/', generate_pdf, name="generate_pdf"),
+    path('pdf_page_caller/<int:student_id>/<int:categoryId>/<int:marks_id>/', pdf_page_caller.as_view(), name="pdf_page_caller"),
+    path('pdf_page/',pdf_page,name="pdf_page"),
 ]

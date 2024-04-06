@@ -365,6 +365,7 @@ function student_details_fun(id,name,roll,email,categoryId,categoryName){
   // getOneRecordFromDB()
   reset_student_details_display()
  })
+ var Download_pdf_Flag = false
 function getOneRecordFromDB(student_id) {
   // `/StudentAPI/${student_id}/`
     fetch(`/MarksCRUD_student_API/${student_id}/`, {
@@ -373,28 +374,42 @@ function getOneRecordFromDB(student_id) {
             'Content-Type': 'application/json',
         }
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
+    .then(response => 
+         {
+        // if (!response.ok) {
+        //     throw new Error('Network response was not ok');
+        // }
         return response.json();
     })
     .then(data => {
         // console.log(data);  // Handle the data here, such as updating UI 
         // console.log(data.data)
-        var dataObject = data.data;
-        var marks_id = dataObject.id
-        var maths = dataObject.maths
-        var physics = dataObject.physics
-        var chemistry = dataObject.chemistry
-        var english = dataObject.english
-        var hindi = dataObject.hindi
-        // console.log(maths)
-        // console.log(physics)
-        // console.log(chemistry)
-        // console.log(english)
-        // console.log(hindi)
-        selected_student_marks_delatis(marks_id,maths,physics,chemistry,english,hindi)
+        if(data.status==200){
+          Download_pdf_Flag = true
+          var dataObject = data.data;
+          var marks_id = dataObject.id
+          var maths = dataObject.maths
+          var physics = dataObject.physics
+          var chemistry = dataObject.chemistry
+          var english = dataObject.english
+          var hindi = dataObject.hindi
+          // console.log(maths)
+          // console.log(physics)
+          // console.log(chemistry)
+          // console.log(english)
+          // console.log(hindi)
+          selected_student_marks_delatis(marks_id,maths,physics,chemistry,english,hindi)
+        }
+        else{
+          Download_pdf_Flag = false
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: data.error,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
     })
     .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
@@ -415,36 +430,46 @@ function selected_student_marks_delatis(marks_id,maths,physics,chemistry,english
 }
 //GET ONE STUDENT ENDS
 
-//DOWNLOAD BUTTON RELATED FUNCTION STARTS
-$('body').on('click','#download_button',function(){
-  download_button()
+//DOWNLOAD pdf BUTTON RELATED FUNCTION STARTS
+$('body').on('click','#download_pdf_button',function(){
+  download_pdf_button_function()
 })
-function download_button(){
+function download_pdf_button_function(){
   //#working (test)
-  var marks_id = $('#marks_id_pk').text()
+  if(Download_pdf_Flag==true){
+    var marks_id = $('#marks_id_pk').text()
   var student_id = $('#student_id_pk').text()
   var categoryId = $('#student_marks_id_pk').text()
-    fetch('/generate-pdf/'+student_id+'/'+categoryId+'/'+marks_id+'/') // Replace with your Django endpoint URL
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.blob();
+    fetch('/pdf_page_caller/'+student_id+'/'+categoryId+'/'+marks_id+'/',
+         {
+          method:'GET',
+         }
+    ) // Replace with your Django endpoint URL
+        .then(response=>response.json())
+        .then(data=>{
+          if(data.status==200){
+            window.location.href=pdf_page_url
+          }
+          else{
+            Swal.fire({
+              position: "top-end",
+              icon: "error",
+              title: data.error,
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
         })
-        .then(blob => {
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'generated_pdf.pdf';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        })
-        .catch(error => {
-            console.error('Error downloading PDF:', error);
-            alert('Error downloading PDF');
-        });
+  }
+  else{
+    Swal.fire({
+      position: "top-end",
+      icon: "error",
+      title: 'Marks not found!',
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
   //#working (test)
 }
-//DOWNLOAD BUTTON RELATED FUNCTION ENDS
+//DOWNLOAD pdf BUTTON RELATED FUNCTION ENDS

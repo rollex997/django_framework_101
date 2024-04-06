@@ -1,0 +1,76 @@
+<style>
+    .outer_container {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        border: 2px solid black;
+        padding: 5%;
+        background-color: #f0f0f0; /* Grey background color for outer container */
+    }
+    
+    .row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom: 20px; /* Add margin between rows */
+    }
+
+    .table_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .table_style {
+        border-collapse: collapse;
+        width: 100%; /* Adjust the width of the table */
+    }
+
+    /* Style for table header */
+    .table_style th {
+        background-color: #9CAFAA; /* Light blue background color for header cells */
+        border: 1px solid black;
+        text-align: left;
+        padding: 8px;
+    }
+
+    /* Style for table data */
+    .table_style td {
+        background-color:#D6DAC8;
+        border: 1px solid black;
+        text-align: left;
+        padding: 8px;
+    }
+</style>
+
+<div class="outer_container">
+    <div class="row">
+        <h1>Student's Report Card</h1>
+    </div>
+    <div class="row">
+        <h2>Name: {{ student.name }}</h2>
+        <h2>Roll Number: {{ student.roll }}</h2>
+        <h2>Category: {{ student_category.category }}</h2>
+    </div>
+    <div class="table_container">
+        <table class="table_style">
+            <tr>
+                <th>Maths</th>
+                <th>Physics</th>
+                <th>Chemistry</th>
+                <th>English</th>
+                <th>Hindi</th>
+            </tr>
+            <tr>
+                <td>{{ student_marks.maths }}</td>
+                <td>{{ student_marks.physics }}</td>
+                <td>{{ student_marks.chemistry }}</td>
+                <td>{{ student_marks.english }}</td>
+                <td>{{ student_marks.hindi }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
