@@ -8,6 +8,9 @@ from django.db import IntegrityError
 from marks.models import *
 from marks.serializers import *
 
+# generate pdf from html page dynamically related imports
+from task1.pdf import *
+from django.shortcuts import HttpResponse
 
 # Create your views here.
 class StudentDashboardView(TemplateView):
@@ -141,72 +144,7 @@ class MarksCRUD_student_API(APIView):
             return Response({'status': 500, 'error': 'No Marks Selected'}, status=500)
 # GET MARKS OF THE SELECTED STUDENT ENDS
 
-# GENERATE DYNAMIC PDF AND DOWNLOAD IT IN YOUR DOWNLOADS FOLDER STARTS
-#generate pdf related imports
-# from django.http import HttpResponse
-# import io
-# from django.http import FileResponse
-# from reportlab.pdfgen import canvas
-# import base64
-# from reportlab.lib.pagesizes import letter
-# from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
-# from reportlab.lib import colors
-# def generate_pdf(request, student_id, categoryId, marks_id):
-#     if request.method == 'GET':
-#         # Retrieve data from the database
-#         student = Student.objects.get(id=student_id)
-#         student_category = StudentCategory.objects.get(id=categoryId)
-
-#         try:
-#             student_marks = Marks.objects.get(student=student_id)
-    
-#             # Prepare data for the table
-#             marks_table_data = [
-#                 ['Subject', 'Marks'],
-#                 ['Maths', student_marks.maths],
-#                 ['Physics', student_marks.physics],
-#                 ['Chemistry', student_marks.chemistry],
-#                 ['English', student_marks.english],
-#                 ['Hindi', student_marks.hindi]
-#             ]
-    
-#             # Create a PDF buffer
-#             buffer = io.BytesIO()
-    
-#             # Create a PDF document
-#             pdf = SimpleDocTemplate(buffer, pagesize=letter)
-    
-#             # Create a table and style
-#             marks_table = Table(marks_table_data)
-#             style = TableStyle([('BACKGROUND', (0, 0), (-1, 0), colors.grey),
-#                                 ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-#                                 ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-#                                 ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-#                                 ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-#                                 ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
-#                                 ('GRID', (0, 0), (-1, -1), 1, colors.black)])
-    
-#             marks_table.setStyle(style)
-    
-#             # Add the table to the PDF document
-#             pdf.build([marks_table])
-    
-#             # Get PDF data from the buffer
-#             pdf_data = buffer.getvalue()
-    
-#             # Close the buffer
-#             buffer.close()
-    
-#             # Return the PDF as a response
-#             return HttpResponse(pdf_data, content_type='application/pdf')
-#         except Marks.DoesNotExist as e:
-#             errors = str(e)
-#             return Response({'status':500,'error':errors},status=500)
-# GENERATE DYNAMIC PDF AND DOWNLOAD IT IN YOUR DOWNLOADS FOLDER ENDS
-
 # generate pdf from html page dynamically starts
-from task1.pdf import *
-from django.shortcuts import HttpResponse
 student_marks_backup = {}
 student_backup = {}
 student_category_backup = {}
