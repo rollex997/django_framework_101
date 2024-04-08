@@ -473,3 +473,50 @@ function download_pdf_button_function(){
   //#working (test)
 }
 //DOWNLOAD pdf BUTTON RELATED FUNCTION ENDS
+
+//SEND PDF BUTTON STARTS
+$('body').on('click','#email_pdf_button',function(){
+  email_pdf()
+})
+function email_pdf(){
+  var marks_id = $('#marks_id_pk').text()
+  var student_id = $('#student_id_pk').text()
+  var categoryId = $('#student_marks_id_pk').text()
+  var data = {
+    marks_id:marks_id,
+    student_id:student_id,
+    categoryId:categoryId,
+  }
+    fetch(send_PDF_via_Email_url,
+      {
+        method:'POST',
+        headers:{
+        Accept:'application/json',
+        'Content-Type':'application/json',
+        'X-CSRFToken':getCookie("csrftoken")
+      },
+      body:JSON.stringify(data)
+    }
+    ).then(response=>response.json())
+    .then(data=>{
+      if(data.status==200){
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: 'Marks Sent!',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+      else{
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: data.error,
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    })
+}
+//SEND PDF BUTTON ENDS

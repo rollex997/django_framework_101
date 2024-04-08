@@ -1,0 +1,17 @@
+meta {
+  name: Send pdf via email
+  type: http
+  seq: 17
+}
+
+post {
+  url: http://127.0.0.1:8000/send_PDF_via_Email/
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  marks_id: 19
+  student_id: 1
+  categoryId: 10
+}

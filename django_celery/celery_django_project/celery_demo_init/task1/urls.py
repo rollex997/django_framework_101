@@ -13,4 +13,5 @@ urlpatterns = [
     #working (test)
     path('pdf_page_caller/<int:student_id>/<int:categoryId>/<int:marks_id>/', pdf_page_caller.as_view(), name="pdf_page_caller"),
     path('pdf_page/',pdf_page,name="pdf_page"),
+    path('send_PDF_via_Email/',send_PDF_via_Email.as_view(),name="send_PDF_via_Email"),
 ]
