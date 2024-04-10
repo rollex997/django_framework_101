@@ -149,3 +149,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 # Email related settings Ends
+
+#CELERY CONFIGURATIONS
+CELERY_BROKER_URL = 'amqp://localhost'

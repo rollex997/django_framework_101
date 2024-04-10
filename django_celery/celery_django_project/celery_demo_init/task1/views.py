@@ -198,33 +198,35 @@ class send_PDF_via_Email_using_celery(APIView):
             marks_id = request.data['marks_id']
             student = Student.objects.get(id=student_id)
             student_category = StudentCategory.objects.get(id=categoryId)
-            student_marks = Marks.objects.get(id=marks_id)
-            
-            # Generate PDF content
-            data = {
-                'student': student,
-                'student_category': student_category,
-                'student_marks': student_marks,
-            }
-            pdf_content = html2pdf('task1/pdf_page.html', data)
-            
-            if pdf_content:
-                # Save PDF content temporarily
-                # temp_pdf = ContentFile(pdf_content.getvalue())
-                temp_pdf_name = f'{student.name}_report.pdf'  # Set a filename
+            if marks_id:
+                student_marks = Marks.objects.get(id=marks_id)
+                # Generate PDF content
+                data = {
+                    'student': student,
+                    'student_category': student_category,
+                    'student_marks': student_marks,
+                }
+                pdf_content = html2pdf('task1/pdf_page.html', data)
                 
-                # Send PDF via email (you can use the email sending logic here)
-                email_id = 'aryan268859@gmail.com'  # Replace with recipient's email
-                subject = f"Report for {student.name}"
-                message = f"Attached is the report for {student.name}."
-                # email = EmailMessage(subject, message, to=[email_id])
-                # email.attach(temp_pdf.name, temp_pdf.read(), 'application/pdf')
-                # email.send()
-                send_email_task.delay(email_id,subject,message,temp_pdf_name,pdf_content.getvalue())
-
-                return Response({'status': 200, 'msg': 'PDF sent successfully'}, status=200)
+                if pdf_content:
+                    # Save PDF content temporarily
+                    # temp_pdf = ContentFile(pdf_content.getvalue())
+                    temp_pdf_name = f'{student.name}_report.pdf'  # Set a filename
+                    
+                    # Send PDF via email (you can use the email sending logic here)
+                    email_id = 'aryan268859@gmail.com'  # Replace with recipient's email
+                    subject = f"Report for {student.name}"
+                    message = f"Attached is the report for {student.name}."
+                    # email = EmailMessage(subject, message, to=[email_id])
+                    # email.attach(temp_pdf.name, temp_pdf.read(), 'application/pdf')
+                    # email.send()
+                    send_email_task.delay(email_id,subject,message,temp_pdf_name,pdf_content.getvalue())
+    
+                    return Response({'status': 200, 'msg': 'PDF sent successfully'}, status=200)
+                else:
+                    return Response({'status': 500, 'error': 'Failed to generate PDF'}, status=500)
             else:
-                return Response({'status': 500, 'error': 'Failed to generate PDF'}, status=500)
+                return Response({'status':500,'error':'Marks Not found'},status=500)
         except (Student.DoesNotExist, StudentCategory.DoesNotExist, Marks.DoesNotExist) as e:
             return Response({'status': 500, 'error': str(e)}, status=500)
 # SEND PDF USING EMAIL (USING CELERY) ENDS
