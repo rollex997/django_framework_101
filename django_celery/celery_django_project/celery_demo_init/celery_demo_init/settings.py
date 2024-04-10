@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'django_celery_beat',
     'app1',
     'task1',
     'marks',
@@ -152,3 +153,12 @@ EMAIL_USE_SSL = False
 
 #CELERY CONFIGURATIONS
 CELERY_BROKER_URL = 'amqp://localhost'
+
+# CELERY-BEAT TASK SCHEDULER CONFIGURATIONS
+CELERY_BEAT_SCHEDULE = {
+    "scheduled_task" : {
+        "task":"add_numbers",
+        "schedule":10.0, # set the schedule for 10 seconds
+        "args":(10,5)
+    },
+}
