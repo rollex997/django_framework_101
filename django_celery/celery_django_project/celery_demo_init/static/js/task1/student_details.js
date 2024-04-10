@@ -499,9 +499,9 @@ function email_pdf(){
     }
     ).then(response=>response.json())
     .then(data=>{
-      var marks_id = $('#marks_id_pk').empty()
-      var student_id = $('#student_id_pk').empty()
-      var categoryId = $('#student_marks_id_pk').empty()
+      var marks_id = $('#marks_id_pk').text("")
+      var student_id = $('#student_id_pk').text("")
+      var categoryId = $('#student_marks_id_pk').text("")
       if(data.status==200){
         Swal.fire({
           position: "top-end",
@@ -512,9 +512,9 @@ function email_pdf(){
         });
       }
       else{
-        var marks_id = $('#marks_id_pk').empty()
-        var student_id = $('#student_id_pk').empty()
-        var categoryId = $('#student_marks_id_pk').empty()
+        var marks_id = $('#marks_id_pk').text("")
+        var student_id = $('#student_id_pk').text("")
+        var categoryId = $('#student_marks_id_pk').text("")
         Swal.fire({
           position: "top-end",
           icon: "error",
