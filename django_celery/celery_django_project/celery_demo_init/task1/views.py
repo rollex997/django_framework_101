@@ -17,6 +17,9 @@ from django.core.files.base import ContentFile
 #email backend
 from django.core.mail import EmailMessage
 
+#celery related imports 
+#tasks imports 
+from task1.tasks import *
 # Create your views here.
 class StudentDashboardView(TemplateView):
     template_name = 'task1/student_dashboard.html' 
@@ -189,7 +192,6 @@ def pdf_page(request):
 
 # CELERY WORKER RELATED PROGRAM STARTS
 # SEND PDF USING EMAIL (USING CELERY) STARTS
-from task1.tasks import *
 class send_PDF_via_Email_using_celery(APIView):
     def post(self, request):
         try:
