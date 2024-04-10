@@ -46,3 +46,19 @@ class StudentAPI(APIView):
             return Response({'status':200,'msg':'Data Deleted'},status=200)
         except Student.DoesNotExist as e:
             return Response({'status':500,'error':e},status=500)
+
+from task1.tasks import *
+class SendEmail(APIView):
+    def post(self,request):
+        name = request.data.get('name')
+        email = request.data.get('email')
+        review = request.data.get('review')
+        print(f"name : {name}")
+        print(f"email : {email}")
+        print(f"review : {review}")
+        if name and email and review:
+            send_email_task.delay(name,email,review)
+            return Response({'status':200},status=200)
+        else:
+            return Response({'status':500,'error':"Input fields can't be empty"},status=500)
+

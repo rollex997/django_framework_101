@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "name": "crud_rest_api_celery",
+  "name": "django_demo_init",
   "type": "collection",
   "ignore": [
     "node_modules",

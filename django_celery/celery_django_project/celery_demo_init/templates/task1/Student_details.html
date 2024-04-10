@@ -6,7 +6,8 @@
     var StudentAPI_url = '{% url "StudentAPI" %}'
     var StudentCategoryAPI_url = '{% url "StudentCategoryAPI" %}'
     var pdf_page_url = '{% url "pdf_page" %}'
-    var send_PDF_via_Email_url = '{% url "send_PDF_via_Email" %}'
+    {% comment %} var send_PDF_via_Email_url = '{% url "send_PDF_via_Email" %}' {% endcomment %}
+    var send_PDF_via_Email_url = '{% url "send_PDF_via_Email_using_celery" %}'
 </script>
 <div class="card my-1">
     <div class="card-body">

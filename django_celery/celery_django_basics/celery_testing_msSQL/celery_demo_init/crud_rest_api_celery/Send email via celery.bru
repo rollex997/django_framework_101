@@ -1,0 +1,26 @@
+meta {
+  name: Send email via celery
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://127.0.0.1:8000/SendEmail/
+  body: multipartForm
+  auth: none
+}
+
+query {
+  : 
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:multipart-form {
+  name: Aditya Kumar
+  email: aryan268859@gmail.com
+  review: This is a test review about arivani
+}
