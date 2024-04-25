@@ -1,6 +1,6 @@
 from django.db import IntegrityError
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser, IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
@@ -117,4 +117,20 @@ class EmailVerification(APIView):
                 return Response({'status':500,'error':'otp did nor match'},status=500)
         except Exception as e:
             return Response({'status':500,'error':str(e)},status=500)
-
+from rest_framework_simplejwt.tokens import RefreshToken
+class LogoutView(APIView):
+     authentication_classes = (JWTAuthentication,)
+     permission_classes = (IsAuthenticated,)
+     def post(self, request):
+          try:
+               refresh_token = request.data["refresh_token"]
+               token = RefreshToken(refresh_token)
+               token.blacklist()
+               return Response({'status':205,'msg':'user logged out refresh token reset'},status=205)
+          except Exception as e:
+               return Response({'status':400,'error':str(e)},status=400)
+class homeView(APIView):
+    authentication_classes = (JWTAuthentication,)
+    permission_classes = [IsAuthenticated,]
+    def get(self,request):
+        return Response({'status':200,'msg':'Welcome to the homepage api'},status=200)

@@ -17,5 +17,7 @@ urlpatterns = [
    path('UserRoleList/',UserRoleList.as_view(),name="UserRoleList"),
    path('RegisterUser/',RegisterUser.as_view(),name="RegisterUser"),
    path('EmailVerification/',EmailVerification.as_view(),name="EmailVerification"),
+   path('LogoutView/',LogoutView.as_view(),name="LogoutView"),
+   path('homeView/',homeView.as_view(),name="homeView"),
 ]
 

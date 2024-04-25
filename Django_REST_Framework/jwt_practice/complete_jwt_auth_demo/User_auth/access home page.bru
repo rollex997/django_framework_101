@@ -1,0 +1,15 @@
+meta {
+  name: access home page
+  type: http
+  seq: 6
+}
+
+get {
+  url: http://127.0.0.1:8000/auth_api/homeView/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MDU0ODk3LCJpYXQiOjE3MTQwNTM5NDUsImp0aSI6Ijc0ZWM3MmM1NmNhMzRkMDZiYjgwOWM5NzVkOTM5MGI1IiwidXNlcl9pZCI6NTJ9.ytQ5WoZw7hAVju7-ANdCOxa-Ys9LipJI5oNGp9F-f7E
+}
