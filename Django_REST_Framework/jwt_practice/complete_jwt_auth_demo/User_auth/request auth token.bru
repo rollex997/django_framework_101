@@ -1,0 +1,16 @@
+meta {
+  name: request auth token
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://127.0.0.1:8000/auth_api/api/token/
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  username: ayushi
+  password: iloveironman@3000
+}

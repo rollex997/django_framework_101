@@ -1,0 +1,15 @@
+meta {
+  name: get all user roles
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://127.0.0.1:8000/auth_api/UserRoleList/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MDMwMjIyLCJpYXQiOjE3MTQwMjk5MjIsImp0aSI6IjJkYTdjODdkYmM3NzQzZTg4NTJhY2VjZDRlOGJmMDIxIiwidXNlcl9pZCI6MX0.J0cK8PJsPhJPrHd_NKJX-BRZT9nqAme_ewmSQzrYt5w
+}

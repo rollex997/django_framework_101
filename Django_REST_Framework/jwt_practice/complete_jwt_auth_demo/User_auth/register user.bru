@@ -1,0 +1,18 @@
+meta {
+  name: register user
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://127.0.0.1:8000/auth_api/RegisterUser/
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  username: ayushi
+  email: aditya268859@gmail.com
+  password: iloveironman@3000
+  role: 2
+}
