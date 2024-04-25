@@ -1,0 +1,19 @@
+meta {
+  name: create role
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://127.0.0.1:8000/auth_api/UserRoleList/
+  body: none
+  auth: bearer
+}
+
+headers {
+  role_list: pt teachher
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MDUyMjcyLCJpYXQiOjE3MTQwNTEzNzIsImp0aSI6ImE0YzEwOGVjYzg4ZjQ3MmY5MWU4OTNkZmIyNzExZDkxIiwidXNlcl9pZCI6NTJ9.WiZLk-Ub6W2U_yU519d2wcoekS2UCED4z_lx0psdpns
+}

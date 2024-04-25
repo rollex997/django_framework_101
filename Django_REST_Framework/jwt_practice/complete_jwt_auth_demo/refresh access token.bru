@@ -1,0 +1,19 @@
+meta {
+  name: refresh access token
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://127.0.0.1:8000/auth_api/api/token/refresh/
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: 
+}
+
+body:multipart-form {
+  refresh: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyMTgyNzM3MiwiaWF0IjoxNzE0MDUxMzcyLCJqdGkiOiJmYjI4MmY5MDQ5ZGY0YmRjOTZiOWY4OTg5NmQzNzEzYyIsInVzZXJfaWQiOjUyfQ.Wpi8DuvMGiIey0bo7khHKDGKYRak9E6vwSI_BilIhEw
+}

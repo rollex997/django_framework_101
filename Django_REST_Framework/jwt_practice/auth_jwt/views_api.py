@@ -58,14 +58,10 @@ data_global = {}
 class RegisterUser(APIView):
     def post(self, request):
         serializer = UserSerializer(data = request.data)
+        print(request.data)
         if serializer.is_valid():
             user = serializer.save()
-            #set user is_active field to False after user is created starts
-            user_id = user.id
-            user_model_database = User.objects.get(id=user_id)
-            user_model_database.is_active=False
-            user_model_database.save()
-            #set user is_active field to False after user is created ends
+
             role_id = request.data.get('role')
             if role_id:
                 role = UserRole.objects.get(id=role_id)
@@ -97,8 +93,10 @@ class RegisterUser(APIView):
                     user.delete()
                     return Response({'status':500,'error':str(userProfileSerializer.errors)},status=500)
             else:
+                user.delete()
                 return Response({'status':404,'error':'user role not found'},status=404)
         else:
+            user.delete()
             return Response({'status':500,'error':str(serializer.errors)},status=500)
         
 class EmailVerification(APIView):
@@ -120,7 +118,3 @@ class EmailVerification(APIView):
         except Exception as e:
             return Response({'status':500,'error':str(e)},status=500)
 
-'''
-work on jwt login system 
-the error I am getting is status = 401
-'''
