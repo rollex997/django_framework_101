@@ -98,7 +98,6 @@ class RegisterUser(APIView):
         else:
             user.delete()
             return Response({'status':500,'error':str(serializer.errors)},status=500)
-        
 class EmailVerification(APIView):
     def post(self,request):
         OTP = request.data.get('otp')
