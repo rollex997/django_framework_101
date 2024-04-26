@@ -132,4 +132,15 @@ class homeView(APIView):
     authentication_classes = (JWTAuthentication,)
     permission_classes = [IsAuthenticated,]
     def get(self,request):
-        return Response({'status':200,'msg':'Welcome to the homepage api'},status=200)
+        user_id = request.user.id
+        user = User.objects.get(id=user_id)
+        user_profile = UserProfile.objects.get(user=user)
+        role_id = user_profile.role.id
+        role_name = user_profile.role.role_list
+        user_data = {
+            'username':user.username,
+            'email':user.email,
+            'role_id':role_id,
+            'role_name':role_name
+        }
+        return Response({'status':200,'data':user_data},status=200)
