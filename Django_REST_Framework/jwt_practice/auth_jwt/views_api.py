@@ -9,6 +9,9 @@ from auth_jwt.serializers import *
 import random
 from jwt_practice.settings import EMAIL_HOST_USER
 from auth_jwt.tasks import *
+
+#logout View
+from rest_framework_simplejwt.tokens import RefreshToken
 '''
 CRUD OPERATIONS RELATED TO USER_ROLE_LIST STARTS HERE
 '''
@@ -116,7 +119,7 @@ class EmailVerification(APIView):
                 return Response({'status':500,'error':'otp did nor match'},status=500)
         except Exception as e:
             return Response({'status':500,'error':str(e)},status=500)
-from rest_framework_simplejwt.tokens import RefreshToken
+# from rest_framework_simplejwt.tokens import RefreshToken
 class LogoutView(APIView):
      authentication_classes = (JWTAuthentication,)
      permission_classes = (IsAuthenticated,)
