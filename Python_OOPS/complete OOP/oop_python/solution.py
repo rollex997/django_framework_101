@@ -1,4 +1,4 @@
-# creating a class
+# CREATING A CLASS
 class Phone1:
     def __init__(self,brand,model,price,quantity):
         self.brand = brand
@@ -22,7 +22,7 @@ print(f" myphone calculate total price = {myphone1.calulate_total_price()}")
 print(f" myphone calculate gst price = {myphone1.calculate_gst()}")
 print("\n")
 
-#inheritance
+# INHERITANCE
 class SmartPhone1(Phone1):
     def __init__(self,brand,model,price,quantity,processor,ram,screen,battery):
         #using this super() we are accessing __init__ in the parent class so that we can insert values using constructor in the parent class
@@ -40,7 +40,7 @@ print(f"sp price = {sp1.price}, sp quantity = {sp1.quantity}")
 print(f"sp calculate total price = {sp1.calulate_total_price()}, sp calculate gst price = {sp1.calculate_gst()}")
 print("\n")
 
-#encapsulation
+# ENCAPSULATION
 '''
 Now we want that users should not be able to access brand by using class object example
 class_obj = Phone("Motorolla","Razor",1500,3)
@@ -112,7 +112,7 @@ print(f"myphone calculate total price = {myphone2.calulate_total_price()}")
 print(f"myphone calculate gst price = {myphone2.calculate_gst()}")
 print("\n")
 
-# polymorphism
+# POLYMORPHISM
 '''
 polymorphism means ek class kitne roop le sakta hai
 '''
@@ -184,3 +184,102 @@ print(f"sp3 brand = {sp3.get_brand()}, sp3 model = {sp3.get_model()}, sp3 os_typ
 print(f"sp3 price = {sp3.get_price()}, sp3 quantity = {sp3.get_quantity()}")
 print(f"sp3 total price = {sp3.calulate_total_price()}, sp3 gst = {sp3.calculate_gst()}")
 print("\n") 
+
+# CLASS VARIABLE
+'''
+create a parent class variable to keep track of number of phones created
+'''
+class Phone3:
+    '''
+    decalring a class variables in the parent class here in this case Phone3
+    '''
+    total_phone = 0
+    def __init__(self,brand,model,price,quantity):
+        self.__brand = brand
+        self.__model = model
+        self.__price = price
+        self.__quantity = quantity
+        '''How to access and perform operation on class variables inside the class'''
+        Phone3.total_phone += 1
+    def get_brand(self):
+        return self.__brand
+    def set_brand(self,brand):
+        self.__brand = brand
+
+    def get_model(self):
+        return self.__model
+    def set_model(self,brand):
+        self.__model = brand
+
+    def get_price(self):
+        return self.__price
+    def set_price(self,price):
+        self.__price = price
+
+    def get_quantity(self):
+        return self.__quantity
+    def set_quantity(self,quantity):
+        self.__quantity = quantity
+
+    def calulate_total_price(self):
+        return self.__price * self.__quantity
+    def calculate_gst(self):
+        total_price = self.calulate_total_price()
+        gst = total_price * (18/100)
+        added_total_price_to_gst = total_price + gst
+        return added_total_price_to_gst
+
+class SmartPhone3(Phone3):
+    def __init__(self,brand,model,price,quantity,processor,ram,screen):
+        super().__init__(brand,model,price,quantity)
+        self.__processor = processor
+        self.__ram = ram
+        self.__screen = screen
+    def get_processor(self):
+        return self.__processor
+    def set_processor(self,processor):
+        self.__processor = processor
+    
+    def get_ram(self):
+        return self.__ram
+    def set_ram(self,ram):
+        self.__ram = ram
+    
+    def get_screen(self):
+        return self.__screen
+    def set_screen(self,screen):
+        self.__screen = screen
+    
+    def os_type(self):
+        if self.get_brand() == 'Apple' or self.get_brand() == "APPLE" or self.get_brand() == "apple":
+            return "ios"
+        else:
+            return "android"
+print('Class Variable : keep track of number of phones created')
+sp2_class_variable = SmartPhone3("Nothing","Phone2",51000,4,"quancomm 8th gen2","12GB","6.1 inch")
+print(f"sp2_class_variable brand = {sp2_class_variable.get_brand()}, sp2_class_variable model = {sp2_class_variable.get_model()}, sp2_class_variable os_type = {sp2_class_variable.os_type()}")
+print(f"sp2_class_variable price = {sp2_class_variable.get_price()}, sp2_class_variable quantity = {sp2_class_variable.get_quantity()}")
+print(f"sp2_class_variable total price = {sp2_class_variable.calulate_total_price()}, sp2_class_variable gst = {sp2_class_variable.calculate_gst()}")
+sp3_class_variable = SmartPhone3("Apple","14 pro max",151000,4,"Apple A14","8GB","5.8 inch")
+print(f"sp3_class_variable brand = {sp3_class_variable.get_brand()}, sp3_class_variable model = {sp3_class_variable.get_model()}, sp3_class_variable os_type = {sp3_class_variable.os_type()}")
+print(f"sp3_class_variable price = {sp3_class_variable.get_price()}, sp3_class_variable quantity = {sp3_class_variable.get_quantity()}")
+print(f"sp3_class_variable total price = {sp3_class_variable.calulate_total_price()}, sp3_class_variable gst = {sp3_class_variable.calculate_gst()}")
+sp4_class_variable = SmartPhone3("Apple","14 pro max",151000,4,"Apple A14","8GB","5.8 inch")
+print(f"sp4_class_variable brand = {sp4_class_variable.get_brand()}, sp4_class_variable model = {sp4_class_variable.get_model()}, sp4_class_variable os_type = {sp4_class_variable.os_type()}")
+print(f"sp4_class_variable price = {sp4_class_variable.get_price()}, sp4_class_variable quantity = {sp4_class_variable.get_quantity()}")
+print(f"sp4_class_variable total price = {sp4_class_variable.calulate_total_price()}, sp4_class_variable gst = {sp4_class_variable.calculate_gst()}")
+'''
+This is how you access class variables outside the class
+We should not access the class variables via class object instead we should access the class variables 
+by directly using class.
+Now why is that ?
+The reason is simple If we access the class variables like that then we may or may not get the accurate answers
+because of the way how the classes and objects work in python.
+'''
+print(f"Number of phones created : {Phone3.total_phone}")
+print("\n") 
+
+#STATIC METHOD
+'''
+static method vo method hote hai jiska access class ke pass to hota hai par class ke objects ke pass uska access nai hota
+'''
